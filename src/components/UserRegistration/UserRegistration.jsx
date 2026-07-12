@@ -53,7 +53,24 @@ const UserRegistration = () => {
             />
           </div>
         );
+
       case 3:
+      default:
+        return (
+          <div className={styles.stepFields}>
+            <input
+              className={styles.input}
+              type="password"
+              placeholder="Password"
+            />
+            <input
+              className={styles.input}
+              type="password"
+              placeholder="Confirm Password"
+            />
+          </div>
+        );
+      case 4:
         return (
           <div className={styles.stepFields}>
             <input className={styles.input} type="text" placeholder="Address" />
@@ -76,10 +93,9 @@ const UserRegistration = () => {
               <option value="chennai">Chennai</option>
             </select>
             <input className={styles.input} type="text" placeholder="Pincode" />
-            
           </div>
         );
-      case 4:
+      case 5:
         return (
           <div className={styles.stepFields}>
             <select className={styles.select}>
@@ -102,7 +118,7 @@ const UserRegistration = () => {
             </select>
           </div>
         );
-      case 5:
+      case 6:
         return (
           <div className={styles.stepFields}>
             <select className={styles.select}>
@@ -113,7 +129,7 @@ const UserRegistration = () => {
             </select>
           </div>
         );
-      case 6:
+      case 7:
         return (
           <div className={styles.stepFields}>
             <select className={styles.select}>
@@ -137,22 +153,6 @@ const UserRegistration = () => {
               className={styles.input}
               type="text"
               placeholder="Company Name"
-            />
-          </div>
-        );
-      case 7:
-      default:
-        return (
-          <div className={styles.stepFields}>
-            <input
-              className={styles.input}
-              type="password"
-              placeholder="Password"
-            />
-            <input
-              className={styles.input}
-              type="password"
-              placeholder="Confirm Password"
             />
           </div>
         );
@@ -199,7 +199,7 @@ const UserRegistration = () => {
               </button>
             )}
 
-            {page !== 7 ? (
+            {page !== 3 ? (
               <button
                 className={styles.nextButton}
                 type="button"
