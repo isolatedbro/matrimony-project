@@ -37,7 +37,7 @@ const UserRegistration = () => {
     e.preventDefault();
 
     console.log(registrationData)
-    const res = await fetch("http://localhost:3000/users/new-registration", {
+    const res = await fetch("https://server-mat.onrender.com/users/new-registration", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -47,8 +47,6 @@ const UserRegistration = () => {
     const x = await res.json();
     console.log("Response from server:",x);
   }
-
-
 
     // console.log("Response from server:", res);
   
