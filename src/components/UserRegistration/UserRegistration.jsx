@@ -14,6 +14,44 @@ const UserRegistration = () => {
     setPage((prev) => (prev > 1 ? prev - 1 : prev));
   };
 
+  const [registrationData, setRegistrationData] = useState({
+    firstName: "",
+    lastName: "",
+    gender: "",
+    dateOfBirth: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setRegistrationData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    console.log(registrationData)
+    const res = await fetch("http://localhost:3000/users/new-registration", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(registrationData),
+    });
+    const x = await res.json();
+    console.log("Response from server:",x);
+  }
+
+
+
+    // console.log("Response from server:", res);
+  
   const renderStep = () => {
     switch (page) {
       case 1:
@@ -23,13 +61,24 @@ const UserRegistration = () => {
               className={styles.input}
               type="text"
               placeholder="First Name"
+              value={registrationData.firstName}
+              onChange={handleChange}
+              name="firstName"
             />
             <input
               className={styles.input}
               type="text"
               placeholder="Last Name"
+              value={registrationData.lastName}
+              onChange={handleChange}
+              name="lastName"
             />
-            <select className={styles.select}>
+            <select
+              className={styles.select}
+              value={registrationData.gender}
+              onChange={handleChange}
+              name="gender"
+            >
               <option value="">Select Gender</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
@@ -38,6 +87,9 @@ const UserRegistration = () => {
             <input
               className={styles.input}
               type="date"
+              value={registrationData.dateOfBirth}
+              onChange={handleChange}
+              name="dateOfBirth"
               data-placeholder="Date of Birth"
             />
           </div>
@@ -45,11 +97,21 @@ const UserRegistration = () => {
       case 2:
         return (
           <div className={styles.stepFields}>
-            <input className={styles.input} type="email" placeholder="Email" />
+            <input
+              className={styles.input}
+              type="email"
+              placeholder="Email"
+              value={registrationData.email}
+              onChange={handleChange}
+              name="email"
+            />
             <input
               className={styles.input}
               type="number"
               placeholder="Phone Number"
+              value={registrationData.phoneNumber}
+              onChange={handleChange}
+              name="phoneNumber"
             />
           </div>
         );
@@ -62,100 +124,21 @@ const UserRegistration = () => {
               className={styles.input}
               type="password"
               placeholder="Password"
+              value={registrationData.password}
+              onChange={handleChange}
+              name="password"
             />
             <input
               className={styles.input}
               type="password"
               placeholder="Confirm Password"
+              value={registrationData.confirmPassword}
+              onChange={handleChange}
+              name="confirmPassword"
             />
           </div>
         );
-      case 4:
-        return (
-          <div className={styles.stepFields}>
-            <input className={styles.input} type="text" placeholder="Address" />
-            <select className={styles.select}>
-              <option value="">Select Country</option>
-              <option value="india">India</option>
-              <option value="usa">USA</option>
-              <option value="uk">UK</option>
-            </select>
-            <select className={styles.select}>
-              <option value="">Select State</option>
-              <option value="maharashtra">Maharashtra</option>
-              <option value="karnataka">Karnataka</option>
-              <option value="tamilnadu">Tamil Nadu</option>
-            </select>
-            <select className={styles.select}>
-              <option value="">Select City</option>
-              <option value="mumbai">Mumbai</option>
-              <option value="bangalore">Bangalore</option>
-              <option value="chennai">Chennai</option>
-            </select>
-            <input className={styles.input} type="text" placeholder="Pincode" />
-          </div>
-        );
-      case 5:
-        return (
-          <div className={styles.stepFields}>
-            <select className={styles.select}>
-              <option value="">Select Religion</option>
-              <option value="hindu">Hindu</option>
-              <option value="muslim">Muslim</option>
-              <option value="christian">Christian</option>
-            </select>
-            <select className={styles.select}>
-              <option value="">Select Caste</option>
-              <option value="brahmin">Brahmin</option>
-              <option value="kshatriya">Kshatriya</option>
-              <option value="vaishya">Vaishya</option>
-            </select>
-            <select className={styles.select}>
-              <option value="">Select Mother Tongue</option>
-              <option value="hindi">Hindi</option>
-              <option value="english">English</option>
-              <option value="tamil">Tamil</option>
-            </select>
-          </div>
-        );
-      case 6:
-        return (
-          <div className={styles.stepFields}>
-            <select className={styles.select}>
-              <option value="">Select Marital Status</option>
-              <option value="single">Single</option>
-              <option value="married">Married</option>
-              <option value="divorced">Divorced</option>
-            </select>
-          </div>
-        );
-      case 7:
-        return (
-          <div className={styles.stepFields}>
-            <select className={styles.select}>
-              <option value="">Select Education</option>
-              <option value="bachelor">Bachelor's Degree</option>
-              <option value="master">Master's Degree</option>
-              <option value="phd">PhD</option>
-            </select>
-            <select className={styles.select}>
-              <option value="">Select Occupation</option>
-              <option value="engineer">Engineer</option>
-              <option value="doctor">Doctor</option>
-              <option value="teacher">Teacher</option>
-            </select>
-            <input
-              className={styles.input}
-              type="text"
-              placeholder="Annual Income"
-            />
-            <input
-              className={styles.input}
-              type="text"
-              placeholder="Company Name"
-            />
-          </div>
-        );
+     
     }
   };
 
@@ -180,7 +163,7 @@ const UserRegistration = () => {
           </div>
         </div>
 
-        <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.stepPanel} key={page}>
             {renderStep()}
           </div>
@@ -226,3 +209,161 @@ const UserRegistration = () => {
 };
 
 export default UserRegistration;
+
+
+
+
+// const [address, setAddress] = useState("");
+  // const [country, setCountry] = useState("");
+  // const [state, setState] = useState("");
+  // const [city, setCity] = useState("");
+  // const [pincode, setPincode] = useState("");
+  // const [religion, setReligion] = useState("");
+  // const [caste, setCaste] = useState("");
+  // const [motherTongue, setMotherTongue] = useState("");
+  // const [maritalStatus, setMaritalStatus] = useState("");
+  // const [education, setEducation] = useState("");
+  // const [occupation, setOccupation] = useState("");
+  // const [annualIncome, setAnnualIncome] = useState("");
+  // const [companyName, setCompanyName] = useState("");
+
+
+
+ // case 4:
+      //   return (
+      //     <div className={styles.stepFields}>
+      //       <input
+      //         className={styles.input}
+      //         type="text"
+      //         placeholder="Address"
+      //         value={address}
+      //         onChange={(e) => setAddress(e.target.value)}
+      //       />
+      //       <select
+      //         className={styles.select}
+      //         value={country}
+      //         onChange={(e) => setCountry(e.target.value)}
+      //       >
+      //         <option value="">Select Country</option>
+      //         <option value="india">India</option>
+      //         <option value="usa">USA</option>
+      //         <option value="uk">UK</option>
+      //       </select>
+      //       <select
+      //         className={styles.select}
+      //         value={state}
+      //         onChange={(e) => setState(e.target.value)}
+      //       >
+      //         <option value="">Select State</option>
+      //         <option value="maharashtra">Maharashtra</option>
+      //         <option value="karnataka">Karnataka</option>
+      //         <option value="tamilnadu">Tamil Nadu</option>
+      //       </select>
+      //       <select
+      //         className={styles.select}
+      //         value={city}
+      //         onChange={(e) => setCity(e.target.value)}
+      //       >
+      //         <option value="">Select City</option>
+      //         <option value="mumbai">Mumbai</option>
+      //         <option value="bangalore">Bangalore</option>
+      //         <option value="chennai">Chennai</option>
+      //       </select>
+      //       <input
+      //         className={styles.input}
+      //         type="text"
+      //         placeholder="Pincode"
+      //         value={pincode}
+      //         onChange={(e) => setPincode(e.target.value)}
+      //       />
+      //     </div>
+      //   );
+      // case 5:
+      //   return (
+      //     <div className={styles.stepFields}>
+      //       <select
+      //         className={styles.select}
+      //         value={religion}
+      //         onChange={(e) => setReligion(e.target.value)}
+      //       >
+      //         <option value="">Select Religion</option>
+      //         <option value="hindu">Hindu</option>
+      //         <option value="muslim">Muslim</option>
+      //         <option value="christian">Christian</option>
+      //       </select>
+      //       <select
+      //         className={styles.select}
+      //         value={caste}
+      //         onChange={(e) => setCaste(e.target.value)}
+      //       >
+      //         <option value="">Select Caste</option>
+      //         <option value="brahmin">Brahmin</option>
+      //         <option value="kshatriya">Kshatriya</option>
+      //         <option value="vaishya">Vaishya</option>
+      //       </select>
+      //       <select
+      //         className={styles.select}
+      //         value={motherTongue}
+      //         onChange={(e) => setMotherTongue(e.target.value)}
+      //       >
+      //         <option value="">Select Mother Tongue</option>
+      //         <option value="hindi">Hindi</option>
+      //         <option value="english">English</option>
+      //         <option value="tamil">Tamil</option>
+      //       </select>
+      //     </div>
+      //   );
+      // case 6:
+      //   return (
+      //     <div className={styles.stepFields}>
+      //       <select
+      //         className={styles.select}
+      //         value={maritalStatus}
+      //         onChange={(e) => setMaritalStatus(e.target.value)}
+      //       >
+      //         <option value="">Select Marital Status</option>
+      //         <option value="single">Single</option>
+      //         <option value="married">Married</option>
+      //         <option value="divorced">Divorced</option>
+      //       </select>
+      //     </div>
+      //   );
+      // case 7:
+      //   return (
+      //     <div className={styles.stepFields}>
+      //       <select
+      //         className={styles.select}
+      //         value={education}
+      //         onChange={(e) => setEducation(e.target.value)}
+      //       >
+      //         <option value="">Select Education</option>
+      //         <option value="bachelor">Bachelor's Degree</option>
+      //         <option value="master">Master's Degree</option>
+      //         <option value="phd">PhD</option>
+      //       </select>
+      //       <select
+      //         className={styles.select}
+      //         value={occupation}
+      //         onChange={(e) => setOccupation(e.target.value)}
+      //       >
+      //         <option value="">Select Occupation</option>
+      //         <option value="engineer">Engineer</option>
+      //         <option value="doctor">Doctor</option>
+      //         <option value="teacher">Teacher</option>
+      //       </select>
+      //       <input
+      //         className={styles.input}
+      //         type="text"
+      //         placeholder="Annual Income"
+      //         value={annualIncome}
+      //         onChange={(e) => setAnnualIncome(e.target.value)}
+      //       />
+      //       <input
+      //         className={styles.input}
+      //         type="text"
+      //         placeholder="Company Name"
+      //         value={companyName}
+      //         onChange={(e) => setCompanyName(e.target.value)}
+      //       />
+      //     </div>
+      //   );
