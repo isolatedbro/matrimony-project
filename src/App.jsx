@@ -30,9 +30,8 @@ function App() {
       } else {
         setUserInfo(result?.user);
       }
-      
     };
-    return () => getUsers();
+    getUsers();
   }, [token]);
 
   useEffect(() => {
@@ -44,21 +43,21 @@ function App() {
         },
       });
       const result = await response.json();
-      if(result?.error) {
+      if (result?.error) {
         setIsError("Authentication Failed");
-      }else{
-        setUsers([...result])
+      } else {
+        setUsers([...result]);
       }
     };
-    return () => getUsers()
+    getUsers();
   }, []);
-
- 
 
   return (
     <>
       {isError.length === 0 && <Header />}
-      <Outlet context={{ userInfo, setUserInfo, isError, setIsError, users, API_URL}} />
+      <Outlet
+        context={{ userInfo, setUserInfo, isError, setIsError, users, API_URL }}
+      />
     </>
   );
 }
