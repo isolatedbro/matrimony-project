@@ -16,7 +16,7 @@ const Authentcation = () => {
     <>
       <img
         className={styles.backgroundImage}
-        src="matrimony-project/weddingpic.png"
+        src="/weddingpic.png"
         alt="india bride and groom"
       />
       <div className={styles.container}>
