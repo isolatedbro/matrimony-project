@@ -1,0 +1,11 @@
+.textBox{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    border: 1px solid #b23a48;
+    border-radius: 10px;
+}
+.textBox p{
+    font-size: 20px;
+    padding: 10px;
+}

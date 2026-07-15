@@ -1,0 +1,44 @@
+.filterWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.filterDrop{
+    width: 200px;
+    height: 35px;
+    border: 1px solid pink;
+    border-radius: 10px;
+    background-color: white;
+    margin: 5px;
+    font-size: 18px;
+    text-align: center;
+    color: rgb(53, 53, 53);
+    
+}
+
+.filterYear{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 5px;
+}
+
+.minYear,.maxYear{
+    width: 50%;
+    height: 35px;
+    border: 1px solid pink;
+    border-radius: 10px;
+    text-align: center;
+}
+
+
+.maxYear::placeholder, .minYear::placeholder{
+    font-size: 18px;
+}
+
+.filterType{
+    font-size: 18px;
+    color: #d85a73;
+    font-weight: 600;
+}

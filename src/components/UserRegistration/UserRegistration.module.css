@@ -88,6 +88,7 @@
 
 .stepPanel {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 280px;
@@ -208,6 +209,10 @@ input[type="date"]::before {
 
 .arrow {
   font-size: 1.05rem;
+}
+
+.errorBox{
+  color: #7a2440;
 }
 
 @keyframes slideIn {

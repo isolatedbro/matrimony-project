@@ -1,0 +1,21 @@
+.catalogWrapper{
+    display: flex;
+    width: 100%;
+    border: 2px solid green;
+    gap: 70px;
+    
+}
+
+.filterBox{
+    width: 20%;
+    height: 100vh;
+    border: 2px solid red;
+    margin-left: 20px;
+    /* position: absolute; */
+}
+.cardWrapper{
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 50%;
+    border: 2px solid green ;
+}
