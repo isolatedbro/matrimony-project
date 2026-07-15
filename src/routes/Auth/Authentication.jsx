@@ -5,9 +5,11 @@ const Authentcation = () => {
   const navigate = useNavigate();
   const handleButtonClick = (e) => {
     if (e.target.textContent.toLowerCase() === "login") {
-      navigate("/auth/login");
+      window.location.href ="/auth/login";
+      // navigate("/auth/login");
     } else if (e.target.textContent.toLowerCase() === "register") {
-      navigate("/auth/registration");
+      // navigate("/auth/registration");
+      window.location.href = "/auth/registration";
     }
   };
   return (
