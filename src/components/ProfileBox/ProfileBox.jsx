@@ -6,7 +6,7 @@ const ProfileBox = ({user}) => {
       <div className={styles.imageWrapper}>
         <img
           className={styles.profilePic}
-          src="sampleWomen1.png"
+          src="matrimony-project/sampleWomen1.png"
           alt="women pic"
         />
       </div>

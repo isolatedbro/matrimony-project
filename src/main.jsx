@@ -11,24 +11,12 @@ import Authentcation from "./routes/Auth/Authentication.jsx";
 import Login from "./routes/Auth/Login.jsx";
 
 
-import { useRouteError } from "react-router";
 
-function ErrorBoundary() {
-  const error = useRouteError();
-  console.error(error);
-  return (
-    <div style={{ padding: 20 }}>
-      <h1>Something broke</h1>
-      <pre>{error?.message || JSON.stringify(error)}</pre>
-    </div>
-  );
-}
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/matrimony-project",
     Component: App,
-    errorElement: ErrorBoundary,
     children: [
       { index: true, Component: Home },
       {

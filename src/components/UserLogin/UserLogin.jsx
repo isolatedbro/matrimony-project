@@ -32,7 +32,7 @@ const UserLogin = () => {
   const handleLoginButton = async (e) => {
     e.preventDefault();
     await loginUser();
-    window.location.href = "/";
+    window.location.href = "/matrimony-project";
   };
 
   return (

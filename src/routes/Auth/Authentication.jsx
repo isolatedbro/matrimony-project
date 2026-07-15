@@ -5,18 +5,18 @@ const Authentcation = () => {
   const navigate = useNavigate();
   const handleButtonClick = (e) => {
     if (e.target.textContent.toLowerCase() === "login") {
-      window.location.href ="/auth/login";
+      window.location.href ="matrimony-project/auth/login";
       // navigate("/auth/login");
     } else if (e.target.textContent.toLowerCase() === "register") {
       // navigate("/auth/registration");
-      window.location.href = "/auth/registration";
+      window.location.href = "matrimony-project/auth/registration";
     }
   };
   return (
     <>
       <img
         className={styles.backgroundImage}
-        src="weddingpic.png"
+        src="matrimony-project/weddingpic.png"
         alt="india bride and groom"
       />
       <div className={styles.container}>

@@ -10,6 +10,7 @@ import Header from "./components/Header/Header";
 
 function App() {
   const API_URL = import.meta.env.VITE_API_URL;
+  console.log(API_URL);
   const token = localStorage.getItem("token");
   const [userInfo, setUserInfo] = useState("");
   const [isError, setIsError] = useState("");
