@@ -5,7 +5,7 @@ const Authentcation = () => {
   const navigate = useNavigate();
   const handleButtonClick = (e) => {
     if (e.target.textContent.toLowerCase() === "login") {
-      window.location.href = "/auth/login";
+      // window.location.href = "/auth/login";
       navigate("/auth/login");
     } else if (e.target.textContent.toLowerCase() === "register") {
       navigate("/auth/registration");
@@ -31,7 +31,7 @@ const Authentcation = () => {
           <button className={styles.authButton} onClick={handleButtonClick}>
             Login
           </button>
-          <button className={styles.authButton} onClick={handleButtonClick}>
+          <button className={styles.authButton} type="button" onClick={handleButtonClick}>
             Register
           </button>
         </div>
