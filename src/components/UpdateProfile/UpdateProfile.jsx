@@ -469,14 +469,18 @@ const UpdateProfile = () => {
     setProfileData((prevData) => ({
       ...prevData,
       [name]: value,
+      state: "",
+      city: "",
     }));
-    if (value === "") {
-      setProfileData((prevData) => ({
-        ...prevData,
-        state: "",
-        city: "",
-      }));
-    }
+
+    
+    // if (value === "") {
+    //   setProfileData((prevData) => ({
+    //     ...prevData,
+    //     state: "",
+    //     city: "",
+    //   }));
+    // }
   };
 
   const handleStateChange = (e) => {
@@ -488,13 +492,14 @@ const UpdateProfile = () => {
     setProfileData((prevData) => ({
       ...prevData,
       [name]: value,
+      city: "",
     }));
-    if (value === "") {
-      setProfileData((prevData) => ({
-        ...prevData,
-        city: "",
-      }));
-    }
+    // if (value === "") {
+    //   setProfileData((prevData) => ({
+    //     ...prevData,
+    //     city: "",
+    //   }));
+    // }
   };
 
   //   console.log(fathersStatus, mothersStatus);
