@@ -1,0 +1,53 @@
+[
+  {
+    "state": "Central Singapore",
+    "cities": [
+      "Bukit Timah",
+      "Downtown Core",
+      "Geylang",
+      "Kallang",
+      "Marine Parade",
+      "Novena",
+      "Orchard Road",
+      "Outram",
+      "Rochor",
+      "Singapore",
+      "Tanjong Pagar",
+      "Toa Payoh"
+    ]
+  },
+  {
+    "state": "North East",
+    "cities": [
+      "Ang Mo Kio",
+      "Hougang",
+      "Punggol",
+      "Sengkang",
+      "Serangoon"
+    ]
+  },
+  {
+    "state": "North West",
+    "cities": [
+      "Sembawang",
+      "Woodlands",
+      "Yishun"
+    ]
+  },
+  {
+    "state": "South East",
+    "cities": [
+      "Bedok",
+      "Pasir Ris",
+      "Tampines"
+    ]
+  },
+  {
+    "state": "South West",
+    "cities": [
+      "Bukit Batok",
+      "Bukit Panjang",
+      "Jurong West"
+    ]
+  }
+]

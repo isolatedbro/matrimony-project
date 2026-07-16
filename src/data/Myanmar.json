@@ -1,0 +1,151 @@
+[
+  {
+    "state": "Ayeyarwady",
+    "cities": [
+      "Bogale",
+      "Hinthada",
+      "Kyaiklat",
+      "Maubin",
+      "Mawlamyinegyunn",
+      "Myanaung",
+      "Nyaungdon",
+      "Pathein",
+      "Pyapon",
+      "Wakema"
+    ]
+  },
+  {
+    "state": "Bago",
+    "cities": [
+      "Bago",
+      "Letpandan",
+      "Nyaunglebin",
+      "Paungde",
+      "Pyay",
+      "Pyu",
+      "Taungoo",
+      "Thanatpin",
+      "Tharyarwady"
+    ]
+  },
+  {
+    "state": "Chin",
+    "cities": [
+      "Falam",
+      "Hakha"
+    ]
+  },
+  {
+    "state": "Kachin",
+    "cities": [
+      "Bhamo",
+      "Myitkyina"
+    ]
+  },
+  {
+    "state": "Kayah",
+    "cities": [
+      "Loikaw"
+    ]
+  },
+  {
+    "state": "Kayin",
+    "cities": [
+      "Dellok",
+      "Hpa-An",
+      "Klonhtoug",
+      "Kyain Seikgyi Township",
+      "Mikenaungea",
+      "Myawadi",
+      "Pulei",
+      "Tagondaing",
+      "Tamoowoug"
+    ]
+  },
+  {
+    "state": "Magway",
+    "cities": [
+      "Chauk",
+      "Magway",
+      "Minbu",
+      "Myaydo",
+      "Pakokku",
+      "Taungdwingyi",
+      "Thayetmyo",
+      "Yenangyaung"
+    ]
+  },
+  {
+    "state": "Mandalay",
+    "cities": [
+      "Kyaukse",
+      "Mandalay",
+      "Meiktila",
+      "Mogok",
+      "Myingyan",
+      "Nyaungshwe",
+      "Pyin Oo Lwin",
+      "Yamethin"
+    ]
+  },
+  {
+    "state": "Mon State",
+    "cities": [
+      "Kyaikkami",
+      "Kyaikto",
+      "Martaban",
+      "Mawlamyine",
+      "Mudon",
+      "Thaton"
+    ]
+  },
+  {
+    "state": "Naypyidaw",
+    "cities": [
+      "Nay Pyi Taw",
+      "Pyinmana"
+    ]
+  },
+  {
+    "state": "Rakhine",
+    "cities": [
+      "Sittwe"
+    ]
+  },
+  {
+    "state": "Sagaing",
+    "cities": [
+      "Mawlaik",
+      "Monywa",
+      "Sagaing",
+      "Shwebo"
+    ]
+  },
+  {
+    "state": "Shan",
+    "cities": [
+      "Lashio",
+      "Tachilek",
+      "Taunggyi"
+    ]
+  },
+  {
+    "state": "Tanintharyi",
+    "cities": [
+      "Dawei",
+      "Kawthoung",
+      "Myeik"
+    ]
+  },
+  {
+    "state": "Yangon",
+    "cities": [
+      "Kanbe",
+      "Kayan",
+      "Syriam",
+      "Thongwa",
+      "Twante",
+      "Yangon"
+    ]
+  }
+]

@@ -5,12 +5,15 @@ import Home from "./routes/Home/Home";
 import Registration from "./routes/Auth/Registration";
 import { Outlet } from "react-router";
 import Header from "./components/Header/Header";
+// import DropDownList from "./components/DropDownList/DropDownList";
+import data from "./data/usStatesCities.json";
+import {Country, State, City} from "country-state-city";
+// import { getAllStates } from "country-state-city/lib/state";
 
 // "https://server-mat.onrender.com/"
 
 function App() {
   const API_URL = import.meta.env.VITE_API_URL;
-  console.log(API_URL);
   const token = localStorage.getItem("token");
   const [userInfo, setUserInfo] = useState("");
   const [isError, setIsError] = useState("");
@@ -52,10 +55,14 @@ function App() {
     };
     getUsers();
   }, []);
+  console.log(userInfo);
+
+  // const list = DropDownList();
+  
 
   return (
     <>
-      {isError.length === 0 && <Header />}
+      {isError.length === 0 && <Header userInfo={userInfo}  />}
       <Outlet
         context={{ userInfo, setUserInfo, isError, setIsError, users, API_URL }}
       />

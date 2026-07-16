@@ -1,0 +1,296 @@
+[
+  {
+    "state": "Ampara",
+    "cities": []
+  },
+  {
+    "state": "Anuradhapura",
+    "cities": []
+  },
+  {
+    "state": "Badulla",
+    "cities": []
+  },
+  {
+    "state": "Batticaloa",
+    "cities": []
+  },
+  {
+    "state": "Central",
+    "cities": [
+      "Dambulla",
+      "Hatton",
+      "Kandy",
+      "Kandy District",
+      "Matale",
+      "Matale District",
+      "Nuwara Eliya",
+      "Nuwara Eliya District",
+      "Sigiriya",
+      "Talawakele"
+    ]
+  },
+  {
+    "state": "Colombo",
+    "cities": [
+      "Dehiwala-Mount Lavinia",
+      "Homagama",
+      "Kaduwela",
+      "Kesbewa",
+      "Kolonnawa",
+      "Kotte",
+      "Maharagama",
+      "Moratuwa",
+      "Padukka",
+      "Ratmalana",
+      "Seethawaka",
+      "Thimbirigasyaya"
+    ]
+  },
+  {
+    "state": "Eastern",
+    "cities": [
+      "Ampara",
+      "Ampara District",
+      "Batticaloa",
+      "Batticaloa District",
+      "Eravur Town",
+      "Kalmunai",
+      "Trincomalee",
+      "Trincomalee District",
+      "Vakarai"
+    ]
+  },
+  {
+    "state": "Galle",
+    "cities": []
+  },
+  {
+    "state": "Gampaha",
+    "cities": []
+  },
+  {
+    "state": "Hambantota",
+    "cities": []
+  },
+  {
+    "state": "Jaffna",
+    "cities": []
+  },
+  {
+    "state": "Kalutara",
+    "cities": []
+  },
+  {
+    "state": "Kandy",
+    "cities": [
+      "Akurana",
+      "Alawatugoda",
+      "Ambatenna",
+      "Daskara",
+      "Daulagala",
+      "Delthota",
+      "Doluwa",
+      "Galagedara",
+      "Galhinna",
+      "Gampola",
+      "Ganga Ihala Korale",
+      "Hanguranketa",
+      "Hapugastalawa",
+      "Harispattuwa",
+      "Hatharaliyadda",
+      "Kadugannawa",
+      "Kandy Four Gravets",
+      "Katugastota",
+      "Kundasale",
+      "Madawala",
+      "Medadumbara",
+      "Menikdiwela",
+      "Minipe",
+      "Nawalapitiya",
+      "Pallekele",
+      "Panvila",
+      "Pasbage Korale",
+      "Pathadumbara",
+      "Pathahewaheta",
+      "Peradeniya",
+      "Pilimathalawa",
+      "Poojapitiya",
+      "Pussellawa",
+      "Talatuoya",
+      "Teldeniya",
+      "Thumpane",
+      "Udadumbara",
+      "Udapalatha",
+      "Ududumbara",
+      "Udunuwara",
+      "Ulapane",
+      "Watadeniya",
+      "Wattegama",
+      "Welamboda",
+      "Yatinuwara"
+    ]
+  },
+  {
+    "state": "Kegalle",
+    "cities": []
+  },
+  {
+    "state": "Kilinochchi",
+    "cities": []
+  },
+  {
+    "state": "Kurunegala",
+    "cities": []
+  },
+  {
+    "state": "Mannar",
+    "cities": []
+  },
+  {
+    "state": "Matale",
+    "cities": []
+  },
+  {
+    "state": "Matara",
+    "cities": []
+  },
+  {
+    "state": "Monaragala",
+    "cities": []
+  },
+  {
+    "state": "Mullaitivu",
+    "cities": []
+  },
+  {
+    "state": "North Central",
+    "cities": [
+      "Anuradhapura",
+      "Anuradhapura District",
+      "Mihintale",
+      "Polonnaruwa",
+      "Polonnaruwa District"
+    ]
+  },
+  {
+    "state": "North Western",
+    "cities": [
+      "Chilaw",
+      "Kuliyapitiya",
+      "Kurunegala",
+      "Kurunegala District",
+      "Puttalam",
+      "Puttalam District"
+    ]
+  },
+  {
+    "state": "Northern",
+    "cities": [
+      "Jaffna",
+      "Jaffna District",
+      "Kilinochchi",
+      "Kilinochchi District",
+      "Point Pedro",
+      "Valvedditturai",
+      "Vavuniya",
+      "Vavuniya District"
+    ]
+  },
+  {
+    "state": "Nuwara Eliya",
+    "cities": []
+  },
+  {
+    "state": "Polonnaruwa",
+    "cities": []
+  },
+  {
+    "state": "Puttalam",
+    "cities": []
+  },
+  {
+    "state": "Ratnapura",
+    "cities": []
+  },
+  {
+    "state": "Sabaragamuwa",
+    "cities": [
+      "Kegalle",
+      "Kegalle District",
+      "Ratnapura",
+      "Ratnapura District"
+    ]
+  },
+  {
+    "state": "Southern",
+    "cities": [
+      "Ambalangoda",
+      "Bentota",
+      "Devinuwara",
+      "Galle",
+      "Galle District",
+      "Hambantota",
+      "Hikkaduwa",
+      "Koggala",
+      "Matara",
+      "Matara District",
+      "Mirissa city",
+      "Talpe",
+      "Tangalle",
+      "Unawatuna",
+      "Weligama"
+    ]
+  },
+  {
+    "state": "Trincomalee",
+    "cities": []
+  },
+  {
+    "state": "Uva",
+    "cities": [
+      "Badulla",
+      "Badulla District",
+      "Ella Town",
+      "Haputale",
+      "Kataragama",
+      "Monaragala",
+      "Moneragala",
+      "Wellawaya"
+    ]
+  },
+  {
+    "state": "Vavuniya",
+    "cities": []
+  },
+  {
+    "state": "Western",
+    "cities": [
+      "Battaramulla South",
+      "Beruwala",
+      "Colombo",
+      "Colombo District",
+      "Gampaha",
+      "Gampaha District",
+      "Hanwella Ihala",
+      "Hendala",
+      "Horana South",
+      "Horawala Junction",
+      "Ja Ela",
+      "Kalutara",
+      "Kandana",
+      "Katunayaka",
+      "Kelaniya",
+      "Kotikawatta",
+      "Minuwangoda",
+      "Mulleriyawa",
+      "Negombo",
+      "Panadura",
+      "Peliyagoda",
+      "Pita Kotte",
+      "Sri Jayewardenepura Kotte",
+      "Wattala",
+      "Welisara"
+    ]
+  }
+]

@@ -1,0 +1,56 @@
+[
+  {
+    "state": "Al Daayen",
+    "cities": []
+  },
+  {
+    "state": "Al Khor",
+    "cities": [
+      "Al Ghuwayrīyah",
+      "Al Khawr"
+    ]
+  },
+  {
+    "state": "Al Rayyan",
+    "cities": [
+      "Ar Rayyān",
+      "Umm Bāb"
+    ]
+  },
+  {
+    "state": "Al Wakrah",
+    "cities": [
+      "Al Wakrah",
+      "Al Wukayr",
+      "Musay‘īd"
+    ]
+  },
+  {
+    "state": "Al-Shahaniya",
+    "cities": [
+      "Al Jumaylīyah",
+      "Ash Shīḩānīyah",
+      "Dukhān"
+    ]
+  },
+  {
+    "state": "Doha",
+    "cities": [
+      "Doha"
+    ]
+  },
+  {
+    "state": "Madinat ash Shamal",
+    "cities": [
+      "Ar Ruways",
+      "Fuwayriţ",
+      "Madīnat ash Shamāl"
+    ]
+  },
+  {
+    "state": "Umm Salal",
+    "cities": [
+      "Umm Şalāl Muḩammad"
+    ]
+  }
+]

@@ -1,0 +1,247 @@
+[
+  {
+    "state": "Auckland",
+    "cities": [
+      "Auckland",
+      "Mangere",
+      "Manukau City",
+      "Muriwai Beach",
+      "Murrays Bay",
+      "North Shore",
+      "Pakuranga",
+      "Papakura",
+      "Parakai",
+      "Pukekohe East",
+      "Red Hill",
+      "Rosebank",
+      "Rothesay Bay",
+      "Takanini",
+      "Tamaki",
+      "Titirangi",
+      "Waitakere",
+      "Waiuku",
+      "Warkworth",
+      "Wellsford",
+      "Wiri"
+    ]
+  },
+  {
+    "state": "Bay of Plenty",
+    "cities": [
+      "Edgecumbe",
+      "Katikati",
+      "Kawerau",
+      "Maketu",
+      "Murupara",
+      "Opotiki",
+      "Rotorua",
+      "Tauranga",
+      "Waihi Beach",
+      "Whakatane"
+    ]
+  },
+  {
+    "state": "Canterbury",
+    "cities": [
+      "Amberley",
+      "Ashburton",
+      "Ashburton District",
+      "Burnham",
+      "Christchurch",
+      "Darfield",
+      "Geraldine",
+      "Kaiapoi",
+      "Leeston",
+      "Lincoln",
+      "Mackenzie",
+      "Methven",
+      "Oxford",
+      "Pleasant Point",
+      "Prebbleton",
+      "Rakaia",
+      "Rolleston",
+      "Selwyn",
+      "Timaru",
+      "Timaru District",
+      "Tinwald",
+      "Waimakariri",
+      "Woodend"
+    ]
+  },
+  {
+    "state": "Chatham Islands",
+    "cities": [
+      "Waitangi"
+    ]
+  },
+  {
+    "state": "Gisborne",
+    "cities": [
+      "Gisborne"
+    ]
+  },
+  {
+    "state": "Hawke's Bay",
+    "cities": [
+      "Hastings",
+      "Napier",
+      "Taradale",
+      "Wairoa"
+    ]
+  },
+  {
+    "state": "Manawatu-Whanganui",
+    "cities": [
+      "Bulls",
+      "Foxton",
+      "Horowhenua",
+      "Levin",
+      "Manawatu",
+      "Palmerston North",
+      "Waiouru",
+      "Wanganui"
+    ]
+  },
+  {
+    "state": "Marlborough",
+    "cities": [
+      "Blenheim",
+      "Picton"
+    ]
+  },
+  {
+    "state": "Nelson",
+    "cities": [
+      "Nelson"
+    ]
+  },
+  {
+    "state": "Northland",
+    "cities": [
+      "Ahipara",
+      "Dargaville",
+      "Far North",
+      "Kaipara",
+      "Kaitaia",
+      "Kawakawa",
+      "Kerikeri",
+      "Maungatapere",
+      "Maungaturoto",
+      "Moerewa",
+      "Ngunguru",
+      "Paihia",
+      "Ruakaka",
+      "Taipa",
+      "Waimate North",
+      "Whangarei"
+    ]
+  },
+  {
+    "state": "Otago",
+    "cities": [
+      "Arrowtown",
+      "Balclutha",
+      "Clutha",
+      "Cromwell",
+      "Dunedin",
+      "Kingston",
+      "Milton",
+      "Oamaru",
+      "Papatowai",
+      "Portobello",
+      "Queenstown",
+      "Wanaka"
+    ]
+  },
+  {
+    "state": "Southland",
+    "cities": [
+      "Bluff",
+      "Gore",
+      "Invercargill",
+      "Riverton",
+      "Southland",
+      "Te Anau",
+      "Winton"
+    ]
+  },
+  {
+    "state": "Taranaki",
+    "cities": [
+      "Eltham",
+      "Hawera",
+      "New Plymouth",
+      "New Plymouth District",
+      "Opunake",
+      "Patea",
+      "South Taranaki",
+      "Stratford",
+      "Waitara"
+    ]
+  },
+  {
+    "state": "Tasman",
+    "cities": [
+      "Brightwater",
+      "Mapua",
+      "Motueka",
+      "Richmond",
+      "Takaka",
+      "Wakefield"
+    ]
+  },
+  {
+    "state": "Waikato",
+    "cities": [
+      "Cambridge",
+      "Coromandel",
+      "Hamilton",
+      "Huntly",
+      "Matamata",
+      "Ngaruawahia",
+      "Ngatea",
+      "Otaua",
+      "Otorohanga",
+      "Paeroa",
+      "Raglan",
+      "South Waikato",
+      "Tairua",
+      "Taupo",
+      "Te Kauwhata",
+      "Thames",
+      "Tokoroa",
+      "Turangi",
+      "Waihi",
+      "Whangamata",
+      "Whitianga"
+    ]
+  },
+  {
+    "state": "Wellington",
+    "cities": [
+      "Brooklyn",
+      "Castlepoint",
+      "Kapiti Coast",
+      "Kelburn",
+      "Khandallah",
+      "Lower Hutt",
+      "Masterton",
+      "Otaki",
+      "Paraparaumu",
+      "Petone",
+      "Porirua",
+      "South Wairarapa",
+      "Upper Hutt",
+      "Waipawa",
+      "Wellington"
+    ]
+  },
+  {
+    "state": "West Coast",
+    "cities": [
+      "Greymouth",
+      "Hokitika",
+      "Westport"
+    ]
+  }
+]

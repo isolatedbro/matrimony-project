@@ -1,0 +1,110 @@
+[
+  {
+    "state": "Arima",
+    "cities": [
+      "Arima"
+    ]
+  },
+  {
+    "state": "Chaguanas",
+    "cities": [
+      "Chaguanas",
+      "Ward of Chaguanas"
+    ]
+  },
+  {
+    "state": "Couva-Tabaquite-Talparo",
+    "cities": [
+      "Couva",
+      "Tabaquite"
+    ]
+  },
+  {
+    "state": "Diego Martin",
+    "cities": [
+      "Petit Valley",
+      "Ward of Diego Martin"
+    ]
+  },
+  {
+    "state": "Eastern Tobago",
+    "cities": []
+  },
+  {
+    "state": "Penal-Debe",
+    "cities": [
+      "Debe",
+      "Peñal"
+    ]
+  },
+  {
+    "state": "Point Fortin",
+    "cities": [
+      "Point Fortin"
+    ]
+  },
+  {
+    "state": "Port of Spain",
+    "cities": [
+      "Mucurapo",
+      "Port of Spain"
+    ]
+  },
+  {
+    "state": "Princes Town",
+    "cities": [
+      "Princes Town"
+    ]
+  },
+  {
+    "state": "Rio Claro-Mayaro",
+    "cities": [
+      "Rio Claro"
+    ]
+  },
+  {
+    "state": "San Fernando",
+    "cities": [
+      "Marabella",
+      "Mon Repos",
+      "San Fernando"
+    ]
+  },
+  {
+    "state": "San Juan-Laventille",
+    "cities": [
+      "Laventille"
+    ]
+  },
+  {
+    "state": "Sangre Grande",
+    "cities": [
+      "Sangre Grande"
+    ]
+  },
+  {
+    "state": "Siparia",
+    "cities": [
+      "Siparia",
+      "Ward of Siparia"
+    ]
+  },
+  {
+    "state": "Tobago",
+    "cities": [
+      "Scarborough"
+    ]
+  },
+  {
+    "state": "Tunapuna-Piarco",
+    "cities": [
+      "Arouca",
+      "Paradise",
+      "Tunapuna"
+    ]
+  },
+  {
+    "state": "Western Tobago",
+    "cities": []
+  }
+]

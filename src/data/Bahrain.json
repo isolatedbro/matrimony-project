@@ -1,0 +1,31 @@
+[
+  {
+    "state": "Capital",
+    "cities": [
+      "Jidd Ḩafş",
+      "Manama",
+      "Sitrah"
+    ]
+  },
+  {
+    "state": "Muharraq",
+    "cities": [
+      "Al Ḩadd",
+      "Al Muharraq"
+    ]
+  },
+  {
+    "state": "Northern",
+    "cities": [
+      "Madīnat Ḩamad"
+    ]
+  },
+  {
+    "state": "Southern",
+    "cities": [
+      "Ar Rifā‘",
+      "Dār Kulayb",
+      "Madīnat ‘Īsá"
+    ]
+  }
+]

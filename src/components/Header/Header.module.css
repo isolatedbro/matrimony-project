@@ -1,5 +1,11 @@
-.header{
-    width: 100%;
-    height: 100px;
-    background-color: #b23a48;
+.header {
+  width: 100%;
+  height: 100px;
+  background-color: #b23a48;
+}
+.profilePicWrapper {
+    height: 30px;
+}
+.profilePic{
+    height: 100%;
 }
