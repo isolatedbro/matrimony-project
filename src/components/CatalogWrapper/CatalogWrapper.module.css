@@ -1,8 +1,9 @@
 .catalogWrapper{
     display: flex;
     width: 100%;
-    border: 2px solid green;
-    gap: 70px;
+    /* border: 2px solid green; */
+    gap: 60px;
+/* background-color: #d163794f; */
     
 }
 
@@ -12,10 +13,11 @@
     border: 2px solid red;
     margin-left: 20px;
     /* position: absolute; */
+    /* padding: 10px; */
 }
 .cardWrapper{
     display: grid;
     grid-template-columns: auto auto;
     width: 50%;
-    border: 2px solid green ;
+    /* border: 2px solid green ; */
 }

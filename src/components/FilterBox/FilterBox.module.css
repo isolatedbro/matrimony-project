@@ -3,6 +3,9 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    background-color: #d163794f;
+        width: 25%;
+    padding: 30px
 }
 .filterDrop{
     width: 200px;
