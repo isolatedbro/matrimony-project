@@ -54,7 +54,7 @@ const UserRegistration = () => {
     if (x.error) {
       setErrors([...x.error]);
     } else {
-      window.location.href = "/matrimony-project";
+      window.location.href = "/";
     }
   };
 

@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, createHashRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import Registration from "./routes/Auth/Registration.jsx";
 import Home from "./routes/Home/Home.jsx";
@@ -15,7 +15,7 @@ import Login from "./routes/Auth/Login.jsx";
 
 const router = createBrowserRouter([
   {
-    path: "/matrimony-project",
+    path: "/",
     Component: App,
     children: [
       { index: true, Component: Home },
