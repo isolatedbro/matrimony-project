@@ -1,8 +1,10 @@
 .card {
   display: flex;
   flex-direction: column;
-  width: 300px;
-  height: 500px;
+  /* width: 300px;
+  height: 500px; */
+  width: 100%;
+  height: 100%;
   border: 1px solid #f0d9de;
   border-radius: 20px;
   overflow: hidden;
@@ -19,6 +21,32 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+.buttonWrapper{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  gap: 5px;
+}
+.ignore, .sendRequest{
+  height: 25px;
+  width: 100px;
+  padding: 3px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.ignore{
+  background-color: red;
+  color: white;
+
+}
+.sendRequest{
+  background-color: green;
+  color: white;
 }
 
 .profilePic {

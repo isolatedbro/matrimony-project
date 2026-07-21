@@ -1,15 +1,19 @@
 .container{
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
+    align-items: center;
+}
+.profileBoxWrapper{
+    width: 20%;
 }
 .infoCardWrapper{
     width: 60%;
 }
 .flexRow{
     display: flex;
+    width: 100%;
 }
 .aboutCardWrapper{
     width: 60%;
-    margin-left: 21%;
+    /* margin-left: 21%; */
 }

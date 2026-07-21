@@ -1,23 +1,62 @@
-.catalogWrapper{
-    display: flex;
-    width: 100%;
-    /* border: 2px solid green; */
-    gap: 60px;
-/* background-color: #d163794f; */
-    
+.catalogWrapper {
+  display: flex;
+  width: 100%;
+  /* border: 2px solid green; */
+  gap: 60px;
+  /* background-color: #d163794f; */
 }
 
-.filterBox{
-    width: 20%;
-    height: 100vh;
-    border: 2px solid red;
-    margin-left: 20px;
-    /* position: absolute; */
-    /* padding: 10px; */
+.filterBox {
+  width: 20%;
+  height: 100vh;
+  border: 2px solid red;
+  margin-left: 20px;
+  /* position: absolute; */
+  /* padding: 10px; */
 }
-.cardWrapper{
-    display: grid;
-    grid-template-columns: auto auto;
-    width: 50%;
-    /* border: 2px solid green ; */
+.cardWrapper {
+  display: grid;
+  grid-template-columns: auto auto;
+  width: 50%;
+  /* width: 300px;
+  height: 500px; */
+  /* border: 2px solid green ; */
+}
+.profileBoxWrapper{
+  width: 300px;
+  height: 500px;
+}
+
+.sideBar {
+  display: flex;
+}
+
+.updateMessage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 95%;
+  height: 100px;
+  align-items: center;
+  text-align: center;
+  margin-top: 5px;
+  /* margin-left: 10px; */
+  gap: 5px;
+  color: #72061b;
+  border: 2px solid rgb(182, 182, 182);
+  border-radius: 10px;
+}
+.button {
+  border: none;
+  padding: 13px 20px;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  color: #ca2d4c;
 }

@@ -55,7 +55,7 @@ const UserRegistration = () => {
       setErrors([...x.error]);
     } else {
       localStorage.setItem('token',x.token);
-      window.location.href = "/";
+      window.location.href = "/update-profile";
     }
   };
 

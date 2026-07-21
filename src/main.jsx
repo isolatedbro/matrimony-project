@@ -9,6 +9,8 @@ import Home from "./routes/Home/Home.jsx";
 import ProfilePage from "./routes/ProfilePage/ProfilePage.jsx";
 import Authentcation from "./routes/Auth/Authentication.jsx";
 import Login from "./routes/Auth/Login.jsx";
+import UpdateProfile from "./routes/UpdateProfile/UpdateProfile.jsx";
+
 
 
 
@@ -28,6 +30,7 @@ const router = createBrowserRouter([
         path: "auth/registration",
         Component: Registration,
       },
+      {path: "update-profile", Component: UpdateProfile},
 
       { path: "profile", Component: ProfilePage },
     ],

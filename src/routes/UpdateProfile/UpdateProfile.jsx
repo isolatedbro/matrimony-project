@@ -1,32 +1,100 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./UpdateProfile.module.css";
 import { City, Country, State } from "country-state-city";
+import { useOutletContext } from "react-router";
 
 const UpdateProfile = () => {
+  const { users, userInfo,API_URL } = useOutletContext();
+  const { token } = useOutletContext();
   const [page, setPage] = useState(1);
-
   const [stateList, setStateList] = useState([]);
   const [cityList, setCityList] = useState([]);
   const [countryCode, setCountryCode] = useState("");
-  const [profileData, setProfileData] = useState({
-    religion: "",
-    caste: "",
-    motherTongue: "",
-    maritalStatus: "",
-    height: "",
-    manglikStatus: "",
-    qualification: "",
-    occupation: "",
-    annualIncome: "",
-    companyName: "",
-    fathersStatus: "",
-    fathersOccupation: "",
-    mothersStatus: "",
-    mothersOccupation: "",
-    country: "",
-    state: "",
-    city: "",
-  });
+  const [stateCode, setStateCode] = useState("");
+  const [existingProfilePic, setExistingProfilePic] = useState([]);
+  const [newProfilePic, setNewProfilePic] = useState([]);
+  const [existingGallery, setExistingGallery] = useState([]);
+  const [newGallery, setNewGallery] = useState([]);
+  const [profileData, setProfileData] = useState({});
+  // const [state,setStateCode] = useState("");
+  // const user = users.find((user) => user._id === userInfo);
+
+  // if (user) {
+  //   // setCountryCode(user.countryCode);
+  //   // console.log("Use found", user);
+  //   if (user?.countryCode) {
+  //     const states = State.getStatesOfCountry(user.countryCode);
+  //     setStateList([...states]);
+  //   }
+  //   if (user?.stateCode) {
+  //     const cities = City.getCitiesOfState(user.countryCode, user.stateCode);
+
+  //     setCityList([...cities]);
+  //   }
+  // }
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await fetch(`${API_URL}/users/user`, {
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = await res.json();
+      // console.log(data);
+      
+      setCountryCode(data?.countryCode);
+      setStateCode(data?.stateCode);
+      const states = State.getStatesOfCountry(data?.countryCode);
+      const cities = City.getCitiesOfState(data?.countryCode, data?.stateCode);
+      setStateList([...states]);
+      setCityList([...cities]);
+      setExistingProfilePic(data?.profilePic);
+      setExistingGallery(data?.gallery);
+      delete data?.profilePic;
+      delete data?.gallery;
+      setProfileData(data);
+    };
+
+    fetchUser();
+
+    // for (const key in user) {
+    //   if (key === "gallery" || key === "profilePic") {
+    //     localStorage.setItem([key], JSON.stringify(user[key]));
+    //   } else {
+    //     localStorage.setItem([key], user[key]);
+    //   }
+    // }
+  }, []);
+
+  // console.log(profileData);
+
+  // const [profileData, setProfileData] = useState({
+  //   religion: localStorage.getItem("religion") || "",
+  //   caste: localStorage.getItem("caste") || "",
+  //   motherTongue: localStorage.getItem("motherTongue") || "",
+  //   maritalStatus: localStorage.getItem("maritalStatus") || "",
+  //   height: localStorage.getItem("height") || "",
+  //   manglikStatus: localStorage.getItem("manglikStatus") || "",
+  //   qualification: localStorage.getItem("qualification") || "",
+  //   occupation: localStorage.getItem("occupation") || "",
+  //   annualIncome: localStorage.getItem("annualIncome") || "",
+  //   companyName: localStorage.getItem("companyName") || "",
+  //   fathersStatus: localStorage.getItem("fathersStatus") || "",
+  //   fathersOccupation:
+  //     localStorage.getItem("fathersOccupation") || "",
+  //   mothersStatus: localStorage.getItem("mothersStatus") || "",
+  //   mothersOccupation:
+  //     localStorage.getItem("mothersOccupation") || "",
+  //   country: localStorage.getItem("country") || "",
+  //   countryCode: localStorage.getItem("countryCode") || "",
+  //   state: localStorage.getItem("state") || "",
+  //   stateCode: localStorage.getItem("stateCode") || "",
+  //   city: localStorage.getItem("city") || "",
+  //   profilePic: localStorage.getItem("profilePic") || "",
+  //   gallery: localStorage.getItem("gallery") || "",
+  // });
 
   const countriesArray = [
     { country: "", code: "" },
@@ -203,7 +271,7 @@ const UpdateProfile = () => {
     "Telugu",
     "Tulu",
     "Urdu",
-  ];;
+  ];
 
   const maritalStatusArray = [
     "",
@@ -451,7 +519,7 @@ const UpdateProfile = () => {
 
   const handleNext = (e) => {
     e.preventDefault();
-    setPage((prev) => (prev < 7 ? prev + 1 : prev));
+    setPage((prev) => (prev < 8 ? prev + 1 : prev));
   };
 
   const handlePrev = (e) => {
@@ -469,11 +537,21 @@ const UpdateProfile = () => {
     setProfileData((prevData) => ({
       ...prevData,
       [name]: value,
+      countryCode: option.dataset.code,
       state: "",
+      stateCode: "",
       city: "",
     }));
 
-    
+    // localStorage.setItem(name, value);
+    // localStorage.setItem("countryCode", option.dataset.code);
+    // localStorage.setItem("state", "");
+    // localStorage.setItem("stateCode", "");
+    // localStorage.setItem("city", "");
+
+    // else {
+    //   formData.append(`${name}`, value);
+    // }
     // if (value === "") {
     //   setProfileData((prevData) => ({
     //     ...prevData,
@@ -486,14 +564,24 @@ const UpdateProfile = () => {
   const handleStateChange = (e) => {
     const { name, value } = e.target;
     const option = e.target.selectedOptions[0];
+    // setStateCode(option.dataset.code);
     // console.log(countryCode,option.dataset.code,countryCode);
     const cities = City.getCitiesOfState(countryCode, option.dataset.code);
     setCityList([...cities]);
     setProfileData((prevData) => ({
       ...prevData,
       [name]: value,
+      stateCode: option.dataset.code,
       city: "",
     }));
+
+    // localStorage.setItem(name, value);
+    // localStorage.setItem("stateCode", option.dataset.code);
+    // localStorage.setItem("city", "");
+
+    // else{
+    //   formData.append(`${name}`, value);
+    // }
     // if (value === "") {
     //   setProfileData((prevData) => ({
     //     ...prevData,
@@ -506,14 +594,137 @@ const UpdateProfile = () => {
   //   console.log("Just Testing",Country.getCountryByCode(""))
   // console.log("Nation",nation)
 
+  const [galleryPreview, setGalleryPreview] = useState([]);
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    setProfileData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    if (e.target.files) {
+      // setProfilePic(e.target.files[0]);
+      if (name === "profilePic") {
+        console.log(e.target.files[0]);
+        // setProfileData((prevData) => ({
+        //   ...prevData,
+        //   [name]: e.target.files[0],
+        // }));
+        setNewProfilePic(e.target.files[0]);
+        setExistingProfilePic([]);
+        // localStorage.setItem(name, JSON.stringify(e.target.files[0]));
+      } else {
+        // console.log(Array.from(e.target.files));
+        // setProfileData((prevData) => ({
+        //   ...prevData,
+        //   [name]: [...e.target.files],
+        // }));
+        setNewGallery((prev) => [...prev, ...e.target.files]);
+        const files = Array.from(e.target.files);
+        const imageUrls = files.map((file) => ({
+          preview: URL.createObjectURL(file),
+        }));
+        setGalleryPreview((prev) => [...prev, ...imageUrls]);
+        // localStorage.setItem(name, JSON.stringify(e.target.files));
+      }
+    } else {
+      setProfileData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+      // localStorage.setItem(name, value);
+    }
   };
+  // console.log(newProfilePic);
+
+  const handleUpdate = async (e) => {
+    const formData = new FormData();
+    //  formData.append("profilePic", profilePic);
+
+    for (const key in profileData) {
+      formData.append([key], profileData[key]);
+
+      // if (key === "gallery") {
+      //   console.log(profileData.gallery);
+      //   newGallery.forEach((element) => {
+      //     formData.append([key], element);
+      //   });
+      // } else if (key === "profilePic") {
+      //   formData.append([key], newProfilePic);
+      // } else {
+      //   formData.append([key], profileData[key]);
+      // }
+    }
+
+    formData.append("profilePic", newProfilePic);
+      newGallery.forEach((element) => {
+        formData.append("gallery", element);
+      });
+
+    // const keepKeys = ["token"];
+    // Object.keys(localStorage).forEach((key) => {
+    //   if (!keepKeys.includes(key)) {
+    //     localStorage.removeItem(key);
+    //   }
+    // });
+    // const token = localStorage.getItem("token");
+    // localStorage.clear();
+    // localStorage.setItem("token", token);
+    // for (const [key, value] of formData.entries()) {
+    //   console.log(key, ":", value);
+    // }
+    // const uploadProflePic = await fetch(
+    //   "http://localhost:3000/upload/profile-picture",
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       authorization: `Bearer ${token}`,
+    //     },
+    //     body: formData,
+    //   },
+    // );
+
+    const updatedUserProfile = await fetch(
+      `${API_URL}/users/update`,
+      {
+        method: "POST",
+        headers: {
+          // "Content-Type" : "application/json",
+          authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      },
+    );
+
+    const response = await updatedUserProfile.json();
+    if (!response.error) {
+      window.location.href = "/";
+    }
+    // console.log(await response.json());
+  };
+
+  const removeGalleryImage = async (e,file) => {
+    console.log(file);
+    if(file.name){
+      const newItem = newGallery.filter(item => item.name !== file.name)
+      setNewGallery(newItem);
+    }else{
+      const deleteImage = await fetch(
+        `${API_URL}/users/delete/gallery`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type" : "application/json",
+            authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(file),
+        },
+      );
+
+      const res = await deleteImage.json();
+      if(!res?.error){
+        setExistingGallery(prev=> prev.filter(image=> image.filename !== file.filename));
+      }
+    }
+  }
+
+  // console.log(profileData);
 
   const render = () => {
     switch (page) {
@@ -523,12 +734,13 @@ const UpdateProfile = () => {
             <p className={styles.question}>What is your Religion?</p>
             <select
               className={styles.select}
-              value={profileData.religion}
+              value={profileData?.religion}
+              defaultValue={localStorage.getItem("religion")}
               onChange={handleChange}
               name="religion"
             >
               {religionArray.map((religion, index) => (
-                <option key={index} value={index}>
+                <option key={index} value={religion}>
                   {religion}
                 </option>
               ))}
@@ -541,9 +753,9 @@ const UpdateProfile = () => {
               onChange={handleChange}
               name="caste"
             >
-              {casteArray.map((cast, index) => (
-                <option key={index} value={index}>
-                  {cast}
+              {casteArray.map((caste, index) => (
+                <option key={index} value={caste}>
+                  {caste}
                 </option>
               ))}
             </select>
@@ -557,7 +769,7 @@ const UpdateProfile = () => {
               name="motherTongue"
             >
               {motherTongueArray.map((motherTongue, index) => (
-                <option key={index} value={index}>
+                <option key={index} value={motherTongue}>
                   {motherTongue}
                 </option>
               ))}
@@ -748,7 +960,7 @@ const UpdateProfile = () => {
                 </option>
               ))}
             </select>
-            {profileData.fathersStatus.length !== 0 &&
+            {profileData.fathersStatus?.length !== 0 &&
               profileData.fathersStatus !== "Retired" &&
               profileData.fathersStatus !== "Passed Away" &&
               profileData.fathersStatus !== `Select Father's status` && (
@@ -822,6 +1034,94 @@ const UpdateProfile = () => {
               )}
           </div>
         );
+
+      case 7:
+        return (
+          <div className={styles.stepFields}>
+            <p className={styles.question}>
+              Want to upload your profile picture?
+            </p>
+            <input
+              className={styles.select}
+              key="profile"
+              type="file"
+              accept="image/*"
+              name="profilePic"
+              onChange={handleChange}
+            />
+            {existingProfilePic && (
+              <img
+                key="prifilePicPreview"
+                // src={URL.createObjectURL(profileData.profilePic) || ""}
+                src={
+                  existingProfilePic.length > 0
+                    ? `${API_URL}/uploads/${userInfo}/profilePic/${existingProfilePic[0].filename}`
+                    : URL.createObjectURL(newProfilePic)
+                }
+                alt="Preview"
+                width={400}
+              />
+            )}
+          </div>
+        );
+
+      case 8:
+        return (
+          <div className={styles.stepFields}>
+            <p className={styles.question}>
+              Want to upload some more picture of you?
+            </p>
+            <input
+              className={styles.select}
+              key="gallery"
+              type="file"
+              accept="image/*"
+              multiple
+              name="gallery"
+              onChange={handleChange}
+            />
+
+            <div className={styles.preview}>
+              {existingGallery?.map((file, index) => (
+                <div key={index} className={styles.previewImage}>
+                  <img
+                    key={index}
+                    // src={URL.createObjectURL(file) || ""}
+                    src={`${API_URL}/uploads/${userInfo}/gallery/${file.filename}`}
+                    alt={`Preview ${index}`}
+                    width={150}
+                  />
+                  <button
+                    className={styles.delete}
+                    onClick={(e) => removeGalleryImage(e, file)}
+                  >
+                    X
+                  </button>
+                </div>
+              ))}
+
+              {newGallery?.map((file, index) => (
+                <div className={styles.previewImage}>
+                  <img
+                    className={styles.select}
+                    key={index}
+                    src={URL.createObjectURL(file)}
+                    // src={file.preview}
+                    // src={`http://localhost:3000/uploads/${userInfo}/gallery/${file.filename}`}
+                    alt={`Preview ${index}`}
+                    width={150}
+                  />
+                  <button
+                    className={styles.delete}
+                    onClick={(e) => removeGalleryImage(e, file)}
+                  >
+                    X
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
     }
   };
   return (
@@ -841,7 +1141,7 @@ const UpdateProfile = () => {
           </button>
         )}
 
-        {page !== 6 ? (
+        {page !== 8 ? (
           <button
             className={styles.nextButton}
             type="button"
@@ -853,7 +1153,11 @@ const UpdateProfile = () => {
             </span>
           </button>
         ) : (
-          <button className={styles.nextButton} type="button">
+          <button
+            className={styles.nextButton}
+            type="button"
+            onClick={handleUpdate}
+          >
             Update
             <span className={styles.arrow} aria-hidden="true">
               ✓

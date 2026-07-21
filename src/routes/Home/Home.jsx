@@ -5,7 +5,7 @@ import styles from "./Home.module.css";
 import Authentcation from "../Auth/Authentication";
 import { useOutlet, useOutletContext } from "react-router";
 import CatalogWrapper from "../../components/CatalogWrapper/CatalogWrapper";
-import UpdateProfile from "../../components/UpdateProfile/UpdateProfile";
+import UpdateProfile from "../UpdateProfile/UpdateProfile";
 
 const Home = () => {
   const { isError } = useOutletContext();
@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <>
       <div className={styles.container}>
-        {!isError.length ? <UpdateProfile/> : <Authentcation />}
+        {!isError.length ? <CatalogWrapper /> : <Authentcation />}
       </div>
     </>
   );

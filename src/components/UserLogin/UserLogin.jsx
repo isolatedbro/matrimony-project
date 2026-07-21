@@ -2,9 +2,11 @@ import { useState } from "react";
 import styles from "./UserLogin.module.css";
 import { useNavigate, useOutletContext } from "react-router";
 
+// const API_URL = import.meta.env.VITE_API_URL;
+
 const UserLogin = () => {
   const [loginData, setLoginData] = useState([]);
-  const {API_URL } = useOutletContext();
+  const { API_URL } = useOutletContext();
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -24,15 +26,19 @@ const UserLogin = () => {
     const result = await response.json();
     if (result?.error) {
       setErrors([...result.error]);
+       return false;
     }
-
+    console.log("LOGIN RESPONSE", result);
     localStorage.setItem("token", result.token);
+    return true;
   };
 
   const handleLoginButton = async (e) => {
     e.preventDefault();
-    await loginUser();
-    window.location.href = "/";
+    const success = await loginUser();
+    if (success) {
+      window.location.href = '/';
+    }
   };
 
   return (

@@ -1,47 +1,47 @@
-.filterWrapper{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    background-color: #d163794f;
-        width: 25%;
-    padding: 30px
+.filterWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background-color: #d163794f;
+  width: 20%;
+  padding: 30px;
 }
-.filterDrop{
-    width: 200px;
-    height: 35px;
-    border: 1px solid pink;
-    border-radius: 10px;
-    background-color: white;
-    margin: 5px;
-    font-size: 18px;
-    text-align: center;
-    color: rgb(53, 53, 53);
-    
-}
-
-.filterYear{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    gap: 5px;
+.filterDrop {
+  width: 200px;
+  height: 35px;
+  border: 1px solid pink;
+  border-radius: 10px;
+  background-color: white;
+  margin: 5px;
+  font-size: 18px;
+  text-align: center;
+  color: rgb(53, 53, 53);
 }
 
-.minYear,.maxYear{
-    width: 50%;
-    height: 35px;
-    border: 1px solid pink;
-    border-radius: 10px;
-    text-align: center;
+.filterYear {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 5px;
 }
 
-
-.maxYear::placeholder, .minYear::placeholder{
-    font-size: 18px;
+.minYear,
+.maxYear {
+  width: 50%;
+  height: 35px;
+  border: 1px solid pink;
+  border-radius: 10px;
+  text-align: center;
 }
 
-.filterType{
-    font-size: 18px;
-    color: #d85a73;
-    font-weight: 600;
+.maxYear::placeholder,
+.minYear::placeholder {
+  font-size: 18px;
+}
+
+.filterType {
+  font-size: 18px;
+  color: #d85a73;
+  font-weight: 600;
 }

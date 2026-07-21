@@ -1,32 +1,71 @@
+import { useOutlet, useOutletContext } from "react-router";
 import styles from "./ProfileBox.module.css";
+import { useState } from "react";
 
-const ProfileBox = ({user}) => {
+const API_URL = import.meta.env.VITE_API_URL;
+
+const ProfileBox = ({ user}) => {
+  const { userInfo,token } = useOutletContext();
+  console.log(user);
+  const dobArray = user?.dateOfBirth?.split("-");
+  // console.log(dobArray);
+  const date = new Date().toLocaleString().split(",")[0];
+  const dateArray = date.toLocaleString().split("/");
+  // console.log(dateArray);
+  const age =  Number(dateArray[2]) - Number(dobArray[0]);
+  const [ingnored, setIngnored] = useState(false);
+  const [requested, setRequested] = useState(false);
+
+  const handleAction = async (e) => {
+    e.target.innerText = "Cancel X";
+    e.target.style = "background: red";
+    const requestObj = {to: user._id, status: "pending"};
+    const sendRequest = await fetch(`${API_URL}/user/send-request`,{
+      method: "POST",
+      headers: {
+        authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify(requestObj)
+    })
+  }
+  
+  
   return (
     <div className={styles.card}>
       <div className={styles.imageWrapper}>
+        <div className={styles.buttonWrapper}>
+          <button className={styles.ignore}>Ignore</button>
+          <button className={styles.sendRequest} onClick={handleAction}>Send Request</button>
+        </div>
         <img
           className={styles.profilePic}
-          src="sampleWomen1.png"
-          alt="women pic"
+          src={
+            user?.profilePic.length > 0
+              ? `${API_URL}/uploads/${userInfo}/profilePic/${user?.profilePic[0]?.filename}`
+              : `defaultProfilePic.jpg`
+          }
+          alt="profilePic"
         />
       </div>
 
       <div className={styles.infoSection}>
         <p className={styles.profileInfo}>
           <span className={styles.attr}>Name :</span>
-          <span className={styles.value}>{user.firstName}{" "}{user.lastName}</span>
+          <span className={styles.value}>
+            {user.firstName} {user.lastName}
+          </span>
         </p>
         <p className={styles.profileInfo}>
           <span className={styles.attr}>Age :</span>
-          <span className={styles.value}>24</span>
+          <span className={styles.value}>{age}</span>
         </p>
         <p className={styles.profileInfo}>
           <span className={styles.attr}>City :</span>
-          <span className={styles.value}>Pune</span>
+          <span className={styles.value}>{user?.city}</span>
         </p>
         <p className={styles.profileInfo}>
           <span className={styles.attr}>Occupation :</span>
-          <span className={styles.value}>Unemployed</span>
+          <span className={styles.value}>{user?.occupation}</span>
         </p>
       </div>
     </div>

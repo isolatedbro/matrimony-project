@@ -55,16 +55,19 @@ function App() {
     };
     getUsers();
   }, []);
-  console.log(userInfo);
+
+  // const date = new Date().toLocaleString().split(',');
+  // const x = date.split(',')
+  // console.log(date);
 
   // const list = DropDownList();
   
 
   return (
     <>
-      {isError.length === 0 && <Header userInfo={userInfo}  />}
+      {isError.length === 0 && <Header userInfo={userInfo} users={users}  />}
       <Outlet
-        context={{ userInfo, setUserInfo, isError, setIsError, users, API_URL }}
+        context={{ userInfo, setUserInfo, isError, setIsError, users, API_URL,token }}
       />
     </>
   );

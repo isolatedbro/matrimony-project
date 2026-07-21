@@ -223,6 +223,33 @@ input[type="date"]::before {
   color: #7a2440;
 }
 
+.preview{
+  display: flex;
+  gap: 10px;
+}
+.previewImage{
+  position: relative;
+}
+.previewImage Image{
+  /* position: absolute; */
+}
+.delete{
+  position: absolute;
+  top: 0px;
+  right: 3px;
+  height: 20px;
+  width: 20px;
+  font-weight: 800;
+  color: red;
+  background: rgba(255, 255, 255, 0.466);
+  border: none;
+}
+.delete:hover{
+  cursor: pointer;
+}
+
+
+
 @keyframes slideIn {
   from {
     opacity: 0;
