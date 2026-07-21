@@ -3,11 +3,12 @@ import styles from "./ProfileBox.module.css";
 import { useState } from "react";
 
 const API_URL = import.meta.env.VITE_API_URL;
-const IMAGE_URL = import.meta.env.IMAGE_URL;
+const IMAGE_URL = import.meta.env.VITE_IMAGE_URL;
 
 const ProfileBox = ({ user}) => {
+  console.log(IMAGE_URL);
   const { userInfo,token } = useOutletContext();
-  console.log(user);
+  // console.log(user);
   const dobArray = user?.dateOfBirth?.split("-");
   // console.log(dobArray);
   const date = new Date().toLocaleString().split(",")[0];

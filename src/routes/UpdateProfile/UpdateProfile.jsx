@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./UpdateProfile.module.css";
 import { City, Country, State } from "country-state-city";
 import { useOutletContext } from "react-router";
-const IMAGE_URL = import.meta.env.IMAGE_URL;
+const IMAGE_URL = import.meta.env.VITE_IMAGE_URL;
 
 const UpdateProfile = () => {
   const { users, userInfo,API_URL } = useOutletContext();
