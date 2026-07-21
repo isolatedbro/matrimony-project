@@ -3,6 +3,7 @@ import styles from "./ProfileBox.module.css";
 import { useState } from "react";
 
 const API_URL = import.meta.env.VITE_API_URL;
+const IMAGE_URL = import.meta.env.IMAGE_URL;
 
 const ProfileBox = ({ user}) => {
   const { userInfo,token } = useOutletContext();
@@ -41,7 +42,7 @@ const ProfileBox = ({ user}) => {
           className={styles.profilePic}
           src={
             user?.profilePic.length > 0
-              ? `${API_URL}/uploads/${userInfo}/profilePic/${user?.profilePic[0]?.filename}`
+              ? `${IMAGE_URL}/uploads/${userInfo}/profilePic/${user?.profilePic[0]?.filename}`
               : `defaultProfilePic.jpg`
           }
           alt="profilePic"

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./UpdateProfile.module.css";
 import { City, Country, State } from "country-state-city";
 import { useOutletContext } from "react-router";
+const IMAGE_URL = import.meta.env.IMAGE_URL;
 
 const UpdateProfile = () => {
   const { users, userInfo,API_URL } = useOutletContext();
@@ -1055,7 +1056,7 @@ const UpdateProfile = () => {
                 // src={URL.createObjectURL(profileData.profilePic) || ""}
                 src={
                   existingProfilePic.length > 0
-                    ? `${API_URL}/uploads/${userInfo}/profilePic/${existingProfilePic[0].filename}`
+                    ? `${IMAGE_URL}/uploads/${userInfo}/profilePic/${existingProfilePic[0].filename}`
                     : URL.createObjectURL(newProfilePic)
                 }
                 alt="Preview"
@@ -1087,7 +1088,7 @@ const UpdateProfile = () => {
                   <img
                     key={index}
                     // src={URL.createObjectURL(file) || ""}
-                    src={`${API_URL}/uploads/${userInfo}/gallery/${file.filename}`}
+                    src={`${IMAGE_URL}/uploads/${userInfo}/gallery/${file.filename}`}
                     alt={`Preview ${index}`}
                     width={150}
                   />
