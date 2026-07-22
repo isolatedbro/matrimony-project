@@ -33,7 +33,7 @@ const ProfilePage = () => {
         },
       });
       const data = await res.json();
-       console.log(data);
+      console.log(data);
       setMatch(data);
     };
     getMatch();
@@ -59,7 +59,7 @@ const ProfilePage = () => {
           </div>
           {user?._id === userInfo && (
             <div className={styles.match}>
-              {!match?.error &&
+              {Array.isArray(match) &&
                 match?.length !== 0 &&
                 match?.map((user, index) => (
                   <MatchList key={index} user={user} />
