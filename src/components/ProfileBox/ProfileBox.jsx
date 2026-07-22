@@ -6,7 +6,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 const IMAGE_URL = import.meta.env.VITE_IMAGE_URL;
 
 const ProfileBox = ({ user}) => {
-  console.log(IMAGE_URL);
+  // console.log(IMAGE_URL);
   const { userInfo,token } = useOutletContext();
   // console.log(user);
   const dobArray = user?.dateOfBirth?.split("-");
@@ -21,24 +21,26 @@ const ProfileBox = ({ user}) => {
   const handleAction = async (e) => {
     e.target.innerText = "Cancel X";
     e.target.style = "background: red";
-    const requestObj = {to: user._id, status: "pending"};
-    const sendRequest = await fetch(`${API_URL}/user/send-request`,{
+    const requestObj = {from: userInfo,to: user._id};
+    const sendRequest = await fetch(`${API_URL}/users/send-request`,{
       method: "POST",
       headers: {
+        "Content-Type": "application/json",
         authorization: `Bearer ${token}`
       },
       body: JSON.stringify(requestObj)
     })
+
   }
   
   
   return (
     <div className={styles.card}>
       <div className={styles.imageWrapper}>
-        <div className={styles.buttonWrapper}>
-          <button className={styles.ignore}>Ignore</button>
+        {user?._id !== userInfo && <div className={styles.buttonWrapper}>
+         <button className={styles.ignore}>Ignore</button>
           <button className={styles.sendRequest} onClick={handleAction}>Send Request</button>
-        </div>
+        </div>}
         <img
           className={styles.profilePic}
           src={

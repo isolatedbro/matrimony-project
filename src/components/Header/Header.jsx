@@ -19,7 +19,7 @@ const Header = ({ userInfo, users }) => {
   return (
     <header className={styles.header}>
       <div className={styles.logoContainer}>
-        <p className={styles.logo}>LOGO</p>
+        <a href='/' className={styles.logo}>LOGO</a>
       </div>
 
       <div className={styles.profilePicWrapper}>
@@ -34,8 +34,8 @@ const Header = ({ userInfo, users }) => {
         />
         {show && (
           <div className={styles.menu}>
-            <button className={styles.action} onClick={handleActions}>Profile</button>
-            <button className={styles.action} onClick={handleActions}>Logout</button>
+            <a href='/profile' className={styles.action} >Profile</a>
+            <a href="#" className={styles.action} onClick={handleActions}>Logout</a>
             <p></p>
           </div>
         )}

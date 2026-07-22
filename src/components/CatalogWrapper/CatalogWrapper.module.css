@@ -2,7 +2,7 @@
   display: flex;
   width: 100%;
   /* border: 2px solid green; */
-  gap: 60px;
+  gap: 20px;
   /* background-color: #d163794f; */
 }
 
@@ -29,14 +29,16 @@
 
 .sideBar {
   display: flex;
+  flex-direction: column;
+  width: 20%; 
 }
 
 .updateMessage {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 95%;
-  height: 100px;
+  width: 100%;
+  height: auto;
   align-items: center;
   text-align: center;
   margin-top: 5px;
@@ -45,7 +47,14 @@
   color: #72061b;
   border: 2px solid rgb(182, 182, 182);
   border-radius: 10px;
+  padding: 5px;
 }
+.request{
+  display: flex;
+  flex-direction: column;
+  color: #72061b;
+}
+
 .button {
   border: none;
   padding: 13px 20px;

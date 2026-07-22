@@ -2,18 +2,25 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-.profileBoxWrapper{
-    width: 20%;
-}
-.infoCardWrapper{
-    width: 60%;
+    /* gap: 10px; */
 }
 .flexRow{
     display: flex;
     width: 100%;
+    gap: 20px;
 }
+.profileBoxWrapper{
+    width: 30%;
+}
+.infoCardWrapper{
+    width: 50%;
+}
+
 .aboutCardWrapper{
-    width: 60%;
+    width: 100%;
+    margin-left: 10px;
     /* margin-left: 21%; */
+}
+.match{
+    width: 20%  ;
 }

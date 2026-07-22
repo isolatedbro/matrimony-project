@@ -1,0 +1,29 @@
+.infoWrapper{
+    /* display: flex; */
+    /* justify-content: start; */
+    /* align-items: flex-start; */
+    /* flex-wrap: wrap; */
+    width: 100%;
+    height: auto;
+    text-align: start;
+    /* line-height: 0%; */
+}
+.info{
+    display: inline-flex; 
+    width: auto;
+    margin: 2px;
+    /* height: 14px; */
+    font-size: 14px;
+    /* line-height: 10px; */
+    gap: 2px;
+}
+.attr{
+    /* float: left; */
+    color: red;
+    height: 14px;
+}
+.value{
+    /* float: right; */
+    color: black;
+     height: 14px;
+}

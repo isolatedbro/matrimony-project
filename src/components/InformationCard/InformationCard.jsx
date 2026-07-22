@@ -6,56 +6,56 @@ const InformationCard = ({user}) => {
       <div className={styles.container}>
         <div className={styles.infoWrapper}>
           <p className={styles.attr}>Date of Birth</p>
-          <p ClassName={styles.value}>{user?.dateOfBirth}</p>
+          <p className={styles.value}>{user?.dateOfBirth}</p>
         </div>
 
         <div className={styles.infoWrapper}>
           <p className={styles.attr}>Phone Number</p>
-          <p ClassName={styles.value}>{user?.phoneNumber}</p>
+          <p className={styles.value}>{user?.phoneNumber}</p>
         </div>
 
         <div className={styles.infoWrapper}>
           <p className={styles.attr}>Email</p>
-          <p ClassName={styles.value}>{user?.email}</p>
+          <p className={styles.value}>{user?.email}</p>
         </div>
 
         <div className={styles.infoWrapper}>
           <p className={styles.attr}>Religion</p>
-          <p ClassName={styles.value}>{user?.religion}</p>
+          <p className={styles.value}>{user?.religion}</p>
         </div>
 
         <div className={styles.infoWrapper}>
           <p className={styles.attr}>Caste</p>
-          <p ClassName={styles.value}>{user?.caste}</p>
+          <p className={styles.value}>{user?.caste}</p>
         </div>
 
         <div className={styles.infoWrapper}>
           <p className={styles.attr}>Marital Status</p>
-          <p ClassName={styles.value}>{user?.maritalStatus}</p>
+          <p className={styles.value}>{user?.maritalStatus}</p>
         </div>
 
         <div className={styles.infoWrapper}>
           <p className={styles.attr}>height</p>
-          <p ClassName={styles.value}>{user?.height}</p>
+          <p className={styles.value}>{user?.height}</p>
         </div>
 
         <div className={styles.infoWrapper}>
           <p className={styles.attr}>Diet</p>
-          <p ClassName={styles.value}>Ocassionally Nonvegeterian</p>
+          <p className={styles.value}>Ocassionally Nonvegeterian</p>
         </div>
 
         <div className={styles.infoWrapper}>
           <p className={styles.attr}>Highest Qualification</p>
-          <p ClassName={styles.value}>{user?.qualification}</p>
+          <p className={styles.value}>{user?.qualification}</p>
         </div>
         <div className={styles.infoWrapper}>
           <p className={styles.attr}>College Name</p>
-          <p ClassName={styles.value}>Harvard Business School</p>
+          <p className={styles.value}>Harvard Business School</p>
         </div>
 
         <div className={styles.infoWrapper}>
           <p className={styles.attr}>Income</p>
-          <p ClassName={styles.value}>{user?.annualIncome}</p>
+          <p className={styles.value}>{user?.annualIncome}</p>
         </div>
       </div>
       <h4 className={styles.title}>Current Work Detail</h4>
