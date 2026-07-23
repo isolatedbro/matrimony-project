@@ -30,9 +30,9 @@ const router = createBrowserRouter([
         path: "auth/registration",
         Component: Registration,
       },
-      {path: "update-profile", Component: UpdateProfile},
+      {path: "update-profile/:userId", Component: UpdateProfile},
 
-      { path: "profile", Component: ProfilePage },
+      { path: "profile/:userId", Component: ProfilePage },
     ],
   },
 ]);

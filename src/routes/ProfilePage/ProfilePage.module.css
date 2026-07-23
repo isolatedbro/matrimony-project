@@ -6,11 +6,12 @@
 }
 .flexRow{
     display: flex;
+    justify-content: center;
     width: 100%;
     gap: 20px;
 }
 .profileBoxWrapper{
-    width: 30%;
+    width: 25%;
 }
 .infoCardWrapper{
     width: 50%;

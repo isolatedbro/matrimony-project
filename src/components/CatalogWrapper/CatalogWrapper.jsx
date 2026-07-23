@@ -8,8 +8,14 @@ import RequestBox from "../RequestBox/RequestBox";
 const API_URL = import.meta.env.VITE_API_URL;
 
 const CatalogWrapper = () => {
-  const { token, users, userInfo } = useOutletContext();
+  const { token, users, userId } = useOutletContext();
   const [requests, setRequests] = useState([]);
+  const [idx, setIdx] = useState([]);
+  const [hide, setHide] = useState([]);
+  // console.log(idx);
+  // const move = {transition: "transform 0.3s ease",
+  //   transform: "translateX(-100px)"
+  // };
   useEffect(() => {
     const fetchUser = async () => {
       const res = await fetch(`${API_URL}/users/get-requests`, {
@@ -25,15 +31,27 @@ const CatalogWrapper = () => {
 
     fetchUser();
   }, []);
+
+  setTimeout(() => {
+    setHide((prev) => [...prev, ...idx]);
+  }, 400);
   return (
     <div className={styles.catalogWrapper}>
       <FilterBox />
       <div className={styles.cardWrapper}>
         {users?.map(
           (profile, index) =>
-            profile._id !== userInfo && (
-              <div key={index} className={styles.profileBoxWrapper}>
-                <ProfileBox user={profile} />
+            profile._id !== userId && (
+              <div
+                key={index}
+                className={`${styles.profileBoxWrapper} ${styles.box} ${idx.includes(index) ? styles.move : ""} ${hide.includes(index) ? styles.hide : ""}`}
+              >
+                <ProfileBox
+                  user={profile}
+                  setIdx={setIdx}
+                  idx={index}
+                  setHide={setHide}
+                />
               </div>
             ),
         )}
@@ -41,19 +59,22 @@ const CatalogWrapper = () => {
 
       <div className={styles.sideBar}>
         <div className={styles.updateMessage}>
-          <p>Update your information to get better match</p>
           <button
             className={styles.button}
-            onClick={() => (window.location.href = "/update-profile")}
+            onClick={() => (window.location.href = `/update-profile/${userId}`)}
           >
-            Update
+            Update Your Profile
           </button>
         </div>
-        <h3>Invitations</h3>
+        <h3 className={styles.heading}>Invitations</h3>
         <div className={styles.request}>
-          {!requests?.message ? requests?.map((request, index) => (
-            <RequestBox key={index} user={request} />
-          )) : <p>No Invitaions</p>}
+          {Array.isArray(requests) ? (
+            requests?.map((request, index) => (
+              <RequestBox key={index} user={request} idx={index} />
+            ))
+          ) : (
+            <p>No Invitaions</p>
+          )}
         </div>
       </div>
     </div>

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import styles from "./UpdateProfile.module.css";
 import { City, Country, State } from "country-state-city";
-import { useOutletContext } from "react-router";
+import { useOutletContext, useParams } from "react-router";
 const IMAGE_URL = import.meta.env.VITE_IMAGE_URL;
 
 const UpdateProfile = () => {
-  const { users, userInfo,API_URL } = useOutletContext();
+  const { users, userId, API_URL } = useOutletContext();
   const { token } = useOutletContext();
   const [page, setPage] = useState(1);
   const [stateList, setStateList] = useState([]);
@@ -17,8 +17,10 @@ const UpdateProfile = () => {
   const [existingGallery, setExistingGallery] = useState([]);
   const [newGallery, setNewGallery] = useState([]);
   const [profileData, setProfileData] = useState({});
+
+  const params = useParams();
   // const [state,setStateCode] = useState("");
-  // const user = users.find((user) => user._id === userInfo);
+  // const user = users.find((user) => user._id === userId);
 
   // if (user) {
   //   // setCountryCode(user.countryCode);
@@ -33,9 +35,10 @@ const UpdateProfile = () => {
   //     setCityList([...cities]);
   //   }
   // }
+
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await fetch(`${API_URL}/users/user`, {
+      const res = await fetch(`${API_URL}/users/user/${params?.userId}`, {
         method: "GET",
         headers: {
           authorization: `Bearer ${token}`,
@@ -43,8 +46,8 @@ const UpdateProfile = () => {
       });
 
       const data = await res.json();
-      // console.log(data);
-      
+      console.log(data);
+
       setCountryCode(data?.countryCode);
       setStateCode(data?.stateCode);
       const states = State.getStatesOfCountry(data?.countryCode);
@@ -654,9 +657,9 @@ const UpdateProfile = () => {
     }
 
     formData.append("profilePic", newProfilePic);
-      newGallery.forEach((element) => {
-        formData.append("gallery", element);
-      });
+    newGallery.forEach((element) => {
+      formData.append("gallery", element);
+    });
 
     // const keepKeys = ["token"];
     // Object.keys(localStorage).forEach((key) => {
@@ -681,17 +684,14 @@ const UpdateProfile = () => {
     //   },
     // );
 
-    const updatedUserProfile = await fetch(
-      `${API_URL}/users/update`,
-      {
-        method: "POST",
-        headers: {
-          // "Content-Type" : "application/json",
-          authorization: `Bearer ${token}`,
-        },
-        body: formData,
+    const updatedUserProfile = await fetch(`${API_URL}/users/update`, {
+      method: "POST",
+      headers: {
+        // "Content-Type" : "application/json",
+        authorization: `Bearer ${token}`,
       },
-    );
+      body: formData,
+    });
 
     const response = await updatedUserProfile.json();
     if (!response.error) {
@@ -700,30 +700,29 @@ const UpdateProfile = () => {
     // console.log(await response.json());
   };
 
-  const removeGalleryImage = async (e,file) => {
+  const removeGalleryImage = async (e, file) => {
     console.log(file);
-    if(file.name){
-      const newItem = newGallery.filter(item => item.name !== file.name)
+    if (file.name) {
+      const newItem = newGallery.filter((item) => item.name !== file.name);
       setNewGallery(newItem);
-    }else{
-      const deleteImage = await fetch(
-        `${API_URL}/users/delete/gallery`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type" : "application/json",
-            authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(file),
+    } else {
+      const deleteImage = await fetch(`${API_URL}/users/delete/gallery`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
         },
-      );
+        body: JSON.stringify(file),
+      });
 
       const res = await deleteImage.json();
-      if(!res?.error){
-        setExistingGallery(prev=> prev.filter(image=> image.filename !== file.filename));
+      if (!res?.error) {
+        setExistingGallery((prev) =>
+          prev.filter((image) => image.filename !== file.filename),
+        );
       }
     }
-  }
+  };
 
   // console.log(profileData);
 
@@ -903,6 +902,15 @@ const UpdateProfile = () => {
               ))}
             </select>
 
+            <p className={styles.question}>Which college did you go?</p>
+            <input
+              type="text"
+              className={styles.select}
+              value={profileData.college}
+              onChange={handleChange}
+              name="college"
+            ></input>
+
             <p className={styles.question}>What is your occupation?</p>
             <select
               className={styles.select}
@@ -1056,7 +1064,7 @@ const UpdateProfile = () => {
                 // src={URL.createObjectURL(profileData.profilePic) || ""}
                 src={
                   existingProfilePic.length > 0
-                    ? `${IMAGE_URL}/uploads/${userInfo}/profilePic/${existingProfilePic[0].filename}`
+                    ? `${IMAGE_URL}/uploads/${userId}/profilePic/${existingProfilePic[0].filename}`
                     : URL.createObjectURL(newProfilePic)
                 }
                 alt="Preview"
@@ -1088,7 +1096,7 @@ const UpdateProfile = () => {
                   <img
                     key={index}
                     // src={URL.createObjectURL(file) || ""}
-                    src={`${IMAGE_URL}/uploads/${userInfo}/gallery/${file.filename}`}
+                    src={`${IMAGE_URL}/uploads/${userId}/gallery/${file.filename}`}
                     alt={`Preview ${index}`}
                     width={150}
                   />
@@ -1108,7 +1116,7 @@ const UpdateProfile = () => {
                     key={index}
                     src={URL.createObjectURL(file)}
                     // src={file.preview}
-                    // src={`http://localhost:3000/uploads/${userInfo}/gallery/${file.filename}`}
+                    // src={`http://localhost:3000/uploads/${userId}/gallery/${file.filename}`}
                     alt={`Preview ${index}`}
                     width={150}
                   />

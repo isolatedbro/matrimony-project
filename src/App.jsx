@@ -7,7 +7,7 @@ import { Outlet } from "react-router";
 import Header from "./components/Header/Header";
 // import DropDownList from "./components/DropDownList/DropDownList";
 import data from "./data/usStatesCities.json";
-import {Country, State, City} from "country-state-city";
+import { Country, State, City } from "country-state-city";
 // import { getAllStates } from "country-state-city/lib/state";
 
 // "https://server-mat.onrender.com/"
@@ -15,9 +15,10 @@ import {Country, State, City} from "country-state-city";
 function App() {
   const API_URL = import.meta.env.VITE_API_URL;
   const token = localStorage.getItem("token");
-  const [userInfo, setUserInfo] = useState("");
+  const [userId, setUserId] = useState("");
   const [isError, setIsError] = useState("");
   const [users, setUsers] = useState([]);
+  const [name, setName] = useState("")
   useEffect(() => {
     const getUsers = async () => {
       const users = await fetch(`${API_URL}/users/profile/`, {
@@ -32,7 +33,8 @@ function App() {
         setIsError("Authentication Failed");
         localStorage.clear();
       } else {
-        setUserInfo(result?.user);
+        setUserId(result?.userId);
+        setName(result?.name);
       }
     };
     getUsers();
@@ -61,13 +63,20 @@ function App() {
   // console.log(date);
 
   // const list = DropDownList();
-  
 
   return (
     <>
-      {isError.length === 0 && <Header userInfo={userInfo} users={users}  />}
+      {isError.length === 0 && <Header userId={userId} users={users} name={name} />}
       <Outlet
-        context={{ userInfo, setUserInfo, isError, setIsError, users, API_URL,token }}
+        context={{
+          userId,
+          setUserId,
+          isError,
+          setIsError,
+          users,
+          API_URL,
+          token,
+        }}
       />
     </>
   );

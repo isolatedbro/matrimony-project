@@ -2,6 +2,9 @@
     display: flex;
     justify-content: flex-start;
     width: 100%;
+    border: 1px solid pink;
+    border-radius: 10px;
+    padding-bottom: 10px;
 }
 .imageContainer{
     width: 20%;
@@ -48,10 +51,11 @@
 }
 .actions{
     display: flex;
-    justify-content: center;
+    justify-content: start;
     /* align-items: center; */
     width: 100%;
     gap: 4px;
+    padding: 3px;
 }
 .ignore, .accept{
   height: 25px;
@@ -62,8 +66,19 @@
   cursor: pointer;
   background-color: red;
   color: white;
+  font-weight: 550;
 }
 .accept{
     background-color: green;
     color: white;
+}
+
+.box{
+  transition: transform 0.5s ease;
+}
+.move{
+  transform: translateX(500px);
+}
+.hide{
+  display: none;
 }

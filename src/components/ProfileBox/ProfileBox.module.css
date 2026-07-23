@@ -14,6 +14,22 @@
   margin: 5px;
 }
 
+.sent{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #b23a48;
+  font-size: 20px;
+   width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.appear{
+  opacity:1;
+  transition: opacity 1s ease;
+}
+
+
 .imageWrapper {
   height: 280px;
   padding: 12px;

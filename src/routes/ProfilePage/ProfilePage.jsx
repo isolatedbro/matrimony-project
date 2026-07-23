@@ -1,4 +1,9 @@
-import { useOutletContext } from "react-router";
+import {
+  useLocation,
+  useOutletContext,
+  useParams,
+  useSearchParams,
+} from "react-router";
 import InformationCard from "../../components/InformationCard/InformationCard";
 import ProfileBox from "../../components/ProfileBox/ProfileBox";
 import UserAboutCard from "../../components/UserAboutCard/UserAboutCard";
@@ -6,12 +11,14 @@ import styles from "./ProfilePage.module.css";
 import { useEffect, useState } from "react";
 import MatchList from "../../components/MatchList/MatchList";
 const ProfilePage = () => {
-  const { token, userInfo, API_URL } = useOutletContext();
+  const { token, userId, API_URL } = useOutletContext();
   const [user, setUser] = useState(null);
   const [match, setMatch] = useState([]);
+  const params = useParams();
+  // console.log("PARAMS", params);
   useEffect(() => {
     const getUser = async () => {
-      const res = await fetch(`${API_URL}/users/user`, {
+      const res = await fetch(`${API_URL}/users/user/${params?.userId}`, {
         method: "GET",
         headers: {
           authorization: `Bearer ${token}`,
@@ -33,7 +40,7 @@ const ProfilePage = () => {
         },
       });
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
       setMatch(data);
     };
     getMatch();
@@ -42,23 +49,24 @@ const ProfilePage = () => {
   return (
     <>
       <div className={styles.container}>
-        {user?._id === userInfo ? (
+        {params?.userId === userId ? (
           <h2>Your's Profile</h2>
         ) : (
           <h2>{`${user?.firstName}'s Profile`}</h2>
         )}
         <div className={styles.flexRow}>
           <div className={styles.profileBoxWrapper}>
-            {user && <ProfileBox user={user} />}
+            {user && <ProfileBox user={user} params={params} />}
           </div>
           <div className={styles.infoCardWrapper}>
             {user && <InformationCard user={user} />}
             <div className={styles.aboutCardWrapper}>
-              <UserAboutCard />
+              <UserAboutCard user={user} />
             </div>
           </div>
-          {user?._id === userInfo && (
+          {params?.userId === userId && (
             <div className={styles.match}>
+              <h3>Your Match</h3>
               {Array.isArray(match) &&
                 match?.length !== 0 &&
                 match?.map((user, index) => (

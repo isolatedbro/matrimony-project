@@ -13,17 +13,17 @@
     width: auto;
     margin: 2px;
     /* height: 14px; */
-    font-size: 14px;
+    font-size: 16px;
     /* line-height: 10px; */
     gap: 2px;
 }
 .attr{
     /* float: left; */
     color: red;
-    height: 14px;
+    /* height: 14px; */
 }
 .value{
     /* float: right; */
     color: black;
-     height: 14px;
+     /* height: 14px; */
 }
