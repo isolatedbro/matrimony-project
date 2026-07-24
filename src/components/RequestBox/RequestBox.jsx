@@ -15,11 +15,13 @@ const RequestBox = ({ user, idx }) => {
 
   const [hide, setHide] = useState(false);
   const [move, setMove] = useState(false);
+  const [action, setAction] = useState("none");
 
   const handleAction = async (e) => {
     let requestObj = {};
     if (e.target.innerText === "Accept") {
       requestObj = { status: "accepted", userId: user?._id };
+      setAction("accepted");
     } else {
       requestObj = { status: "rejected", userId: user?._id };
     }
@@ -32,10 +34,12 @@ const RequestBox = ({ user, idx }) => {
       body: JSON.stringify(requestObj),
     });
 
-    setMove(true);
-    setTimeout(() => {
-      setHide(true);
-    }, 300);
+    if (action !== "accepted") {
+      setMove(true);
+      setTimeout(() => {
+        setHide(true);
+      }, 300);
+    }
   };
   // const myFunc = () => {
   //   setMove(true);
@@ -57,7 +61,7 @@ const RequestBox = ({ user, idx }) => {
         </div>
 
         <div className={styles.infoContainer}>
-          <ProfileSummaryCard user={user} />
+         {action === "accepted"? <a className={styles.viewProfile} href={`/profile/${user?._id}`}>View {user?.firstName}'s Profile</a> :<ProfileSummaryCard user={user} />}
           <div className={styles.actions}>
             <button className={styles.ignore} onClick={handleAction}>
               Reject

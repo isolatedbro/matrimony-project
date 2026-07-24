@@ -14,6 +14,8 @@ const ProfilePage = () => {
   const { token, userId, API_URL } = useOutletContext();
   const [user, setUser] = useState(null);
   const [match, setMatch] = useState([]);
+  const [hide, setHide] = useState(false);
+  const [tempProfile, setTempProfile] = useState([]);
   const params = useParams();
   // console.log("PARAMS", params);
   useEffect(() => {
@@ -27,6 +29,7 @@ const ProfilePage = () => {
       const data = await res.json();
       // console.log(data);
       setUser(data);
+      setTempProfile(data);
     };
     getUser();
   }, []);
@@ -49,8 +52,8 @@ const ProfilePage = () => {
   return (
     <>
       <div className={styles.container}>
-        {params?.userId === userId ? (
-          <h2>Your's Profile</h2>
+        {params?.userId === userId && user?._id === userId ? (
+          <h2>Your Profile</h2>
         ) : (
           <h2>{`${user?.firstName}'s Profile`}</h2>
         )}
@@ -64,14 +67,38 @@ const ProfilePage = () => {
               <UserAboutCard user={user} />
             </div>
           </div>
-          {params?.userId === userId && (
+          {!hide && params?.userId === userId && (
             <div className={styles.match}>
               <h3>Your Match</h3>
               {Array.isArray(match) &&
                 match?.length !== 0 &&
                 match?.map((user, index) => (
-                  <MatchList key={index} user={user} />
+                  <MatchList
+                    key={index}
+                    user={user}
+                    setHide={setHide}
+                    setUser={setUser}
+                  />
                 ))}
+            </div>
+          )}
+          {hide && (
+            <div>
+              {" "}
+              <button
+                className={`${styles.backButton}`}
+                onClick={() => {
+                  setHide(!hide);
+                  setUser(tempProfile);
+                }}
+              >
+                Go Back
+              </button>{" "}
+              <button
+                className={`${styles.backButton}`}
+              >
+                Chat
+              </button>
             </div>
           )}
         </div>

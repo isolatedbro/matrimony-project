@@ -5,7 +5,7 @@ import { useState } from "react";
 const API_URL = import.meta.env.VITE_API_URL;
 const IMAGE_URL = import.meta.env.VITE_IMAGE_URL;
 
-const ProfileBox = ({ user, params, setIdx, idx }) => {
+const ProfileBox = ({ user, params, setIdx, idx,setHide,hide }) => {
   // console.log(IMAGE_URL);
   const { token, userId } = useOutletContext();
   // console.log("USERss",userId);
@@ -22,8 +22,8 @@ const ProfileBox = ({ user, params, setIdx, idx }) => {
 
   const location = useLocation();
   const handleAction = async (e) => {
-    e.target.innerText = "Cancel X";
-    e.target.style = "background: red";
+    // e.target.innerText = "Cancel X";
+    // e.target.style = "background: red";
     const status =
       e.target.innerText.toLowerCase() === "ignore" ? "ignored" : "pending";
     // console.log("Status", status);
@@ -41,17 +41,15 @@ const ProfileBox = ({ user, params, setIdx, idx }) => {
       setTimeout(() => {
         setIdx((prev) => [...prev, idx]);
       }, 300);
-    }else{
+    } else {
       setIdx((prev) => [...prev, idx]);
     }
+    setTimeout(() => {
+      setHide((prev) => [...prev, idx]);
+    }, 500);
   };
 
-  // const myFunc = (e) => {
-  //   if (e.target.innerText.toLowerCase() !== "ignore") {
-  //     setAction("sent");
-  //   }
-  // };
-  // console.log(display)
+  
 
   return (
     <>
@@ -61,7 +59,7 @@ const ProfileBox = ({ user, params, setIdx, idx }) => {
         <div className={styles.card}>
           <div className={styles.imageWrapper}>
             {user?._id !== userId &&
-              location.pathname !== `/profile/${params?.userId}` && (
+              location.pathname !== `/profile/${params?.userId}` && location.pathname !== `/all-match/` && location.pathname !== `/all-requests/` && (
                 <div className={styles.buttonWrapper}>
                   <button className={styles.ignore} onClick={handleAction}>
                     Ignore
@@ -74,9 +72,9 @@ const ProfileBox = ({ user, params, setIdx, idx }) => {
             <img
               className={styles.profilePic}
               src={
-                user?.profilePic.length > 0
+                user?.profilePic?.length > 0
                   ? `${IMAGE_URL}/uploads/${userId}/profilePic/${user?.profilePic[0]?.filename}`
-                  : `defaultProfilePic.jpg`
+                  : `/defaultProfilePic.jpg`
               }
               alt="profilePic"
             />

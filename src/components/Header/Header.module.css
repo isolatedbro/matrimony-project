@@ -8,7 +8,7 @@
   gap: 50px;
 }
 .logo{
-  color:black;
+  color: white;
   text-decoration: none;
   
 }
@@ -22,10 +22,16 @@
   font-weight: 600; 
   position: relative;
 }
+.name{
+  cursor: pointer;
+  font-size: 18px;
+}
 .profilePic {
   height: 80%;
   border-radius: 50%;
+  cursor: pointer;
 }
+
 
 .menu{
   display: flex;
@@ -35,9 +41,10 @@
   background-color: white;
   position: absolute;
   height: 80px;
-  width: 120px;
+  width: 160px;
   right: -30px;
   top: 30px;
+  border-radius: 5px;
   z-index: 1;
 }
 .action{
@@ -45,7 +52,7 @@
   height: 50%;
   border: none;
   background: none;
-  font-size: 16px;
+  font-size: 17px;
   color: black;
   text-decoration: none;
   text-align: center;

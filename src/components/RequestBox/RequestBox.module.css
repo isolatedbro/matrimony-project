@@ -82,3 +82,8 @@
 .hide{
   display: none;
 }
+
+.viewProfile{
+    color: #b23a48;
+    font-weight: 550;
+}

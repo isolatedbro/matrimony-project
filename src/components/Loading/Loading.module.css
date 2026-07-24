@@ -1,0 +1,81 @@
+.loadingContainer {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(to bottom, #fff7f8, #ffeef2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.heartRing {
+  width: 120px;
+  height: 120px;
+  border: 4px solid #e91e63;
+  border-top-color: transparent;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: spin 1.2s linear infinite;
+}
+
+.heart {
+  font-size: 45px;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.loadingContainer h2 {
+  color: #b71c5a;
+  font-size: 28px;
+  margin: 0;
+}
+
+.loadingContainer p {
+  color: #666;
+  margin: 0;
+  font-size: 16px;
+}
+
+.dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dots span {
+  width: 10px;
+  height: 10px;
+  background: #e91e63;
+  border-radius: 50%;
+  animation: bounce 0.6s infinite alternate;
+}
+
+.dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes bounce {
+  to {
+    transform: translateY(-8px);
+    opacity: 0.5;
+  }
+}

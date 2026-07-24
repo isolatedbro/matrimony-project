@@ -10,6 +10,8 @@ import ProfilePage from "./routes/ProfilePage/ProfilePage.jsx";
 import Authentcation from "./routes/Auth/Authentication.jsx";
 import Login from "./routes/Auth/Login.jsx";
 import UpdateProfile from "./routes/UpdateProfile/UpdateProfile.jsx";
+import AllMatch from "./routes/Matches/AllMatch.jsx";
+import AllRequests from "./routes/Requests/AllRequests.jsx";
 
 
 
@@ -33,6 +35,8 @@ const router = createBrowserRouter([
       {path: "update-profile/:userId", Component: UpdateProfile},
 
       { path: "profile/:userId", Component: ProfilePage },
+      {path: "all-match", Component: AllMatch},
+      {path: "all-requests", Component: AllRequests}
     ],
   },
 ]);

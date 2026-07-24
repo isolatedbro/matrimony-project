@@ -1,0 +1,74 @@
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 20px;
+  position: relative;
+}
+.profileBoxWrapper {
+  width: 25%;
+  cursor: pointer;
+}
+
+.profileWindow {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 20px;
+  position: absolute;
+  right: -400px;
+  transition: transform 4s ease;
+}
+.profileBoxWrapper {
+  width: 25%;
+}
+.infoCardWrapper {
+  width: 50%;
+}
+
+.aboutCardWrapper {
+  width: 100%;
+  margin-left: 10px;
+  /* margin-left: 21%; */
+}
+.match {
+  width: 20%;
+}
+.backButton {
+  margin-top: 10px;
+  width: 100px;
+  height: 30px;
+  font-size: 16px;
+  color: brown;
+  background-color: white;
+  border: 1px solid brown;
+  border-radius: 10px;
+  cursor: pointer;
+  
+  /* transform: translateX(400px); */
+}
+.move {
+  transform: translateX(-400px);
+}
+
+.noMatch{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80vh;
+}
+.noMatchMessage{
+  font-size: 40px;
+  font-weight: 600;
+  color: brown;
+}
+
+.hide{
+  display: none;
+}
+
+.viewProfile{
+    color: #b23a48;
+    font-weight: 550;
+}

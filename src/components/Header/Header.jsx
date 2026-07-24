@@ -47,20 +47,21 @@ const Header = ({ userId, users, name }) => {
         </a>
       </div>
 
-      <div className={styles.profilePicWrapper}>
-        <span>
-          {name}
-        </span>
+      <div
+        className={styles.profilePicWrapper}
+        onMouseEnter={() => setShow(!show)}
+        onMouseLeave={() => setShow(!show)}
+      >
+        <span className={styles.name}>{name}</span>
         <img
           className={styles.profilePic}
-          src="defaultProfilePic.jpg"
+          src="/defaultProfilePic.jpg"
           alt="profilePic"
-          onClick={() => setShow(!show)}
         />
         {show && (
           <div className={styles.menu}>
             <Link to={`/profile/${userId}`} className={styles.action}>
-              Profile
+              Account
             </Link>
             <a href="#" className={styles.action} onClick={handleActions}>
               Logout

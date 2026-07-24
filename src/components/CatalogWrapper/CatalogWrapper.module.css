@@ -6,14 +6,20 @@
   /* background-color: #d163794f; */
 }
 
-.filterBox {
+.filterContainer{
+  width: 20%;
+  height: 100vh;
+  background-color: #d163794f;
+  padding: 30px;
+}
+
+/* .filterBox {
   width: 20%;
   height: 100vh;
   border: 2px solid red;
   margin-left: 20px;
-  /* position: absolute; */
-  /* padding: 10px; */
-}
+ 
+} */
 .cardWrapper {
   display: flex;
   flex-wrap: wrap;
@@ -88,4 +94,12 @@
 }
 .hide{
   display: none;
+}
+
+.allRequests{
+  background-color: white;
+  height: 30px;
+  border: none;
+  color: #72061b;
+  cursor: pointer;
 }

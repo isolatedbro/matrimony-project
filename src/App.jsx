@@ -18,7 +18,8 @@ function App() {
   const [userId, setUserId] = useState("");
   const [isError, setIsError] = useState("");
   const [users, setUsers] = useState([]);
-  const [name, setName] = useState("")
+  const [tempUsers, setTempUsers] = useState([]);
+  const [name, setName] = useState("");
   useEffect(() => {
     const getUsers = async () => {
       const users = await fetch(`${API_URL}/users/profile/`, {
@@ -38,7 +39,7 @@ function App() {
       }
     };
     getUsers();
-  }, [token]);
+  }, []);
 
   useEffect(() => {
     const getUsers = async () => {
@@ -53,6 +54,7 @@ function App() {
         setIsError("Authentication Failed");
       } else {
         setUsers([...result]);
+        setTempUsers([...result]);
       }
     };
     getUsers();
@@ -74,6 +76,8 @@ function App() {
           isError,
           setIsError,
           users,
+          setUsers,
+          tempUsers,
           API_URL,
           token,
         }}
