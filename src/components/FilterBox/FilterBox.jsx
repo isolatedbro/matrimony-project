@@ -98,43 +98,50 @@ const FilterBox = () => {
 
   return (
     <div className={styles.filterWrapper}>
-      <span className={styles.filterType}>Income</span>
-      <select
-        className={styles.filterDrop}
-        name="annualIncome"
-        value={filterData.income}
-        onChange={handleFilterChange}
-      >
-        {incomeBracket.map((income, index) => (
-          <option key={index} value={income}>
-            {income}
-          </option>
-        ))}
-      </select>
-      <span className={styles.filterType}>Occupation</span>
-      <select
-        className={styles.filterDrop}
-        name="occupationCategory"
-        value={filterData.occupationCategory}
-        onChange={handleFilterChange}
-      >
-        {occupationCategories.map((val, idx) => (
-          <option key={idx} value={val}>
-            {val}
-          </option>
-        ))}
-      </select>
-      <span className={styles.filterType}>Birth Year</span>
-      <div className={styles.filterYear}>
-        <input
-          className={styles.minYear}
-          type="number"
-          placeholder="Min Age"
-          name="minAge"
-          value={filterData.minBirthYear}
+      <div className={styles.filter}>
+        <span className={styles.filterType}>Income</span>
+        <select
+          className={styles.filterDrop}
+          name="annualIncome"
+          value={filterData.income}
           onChange={handleFilterChange}
-        />
-        {/* <select
+        >
+          {incomeBracket.map((income, index) => (
+            <option key={index} value={income}>
+              {income}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className={styles.filter}>
+        <span className={styles.filterType}>Occupation</span>
+        <select
+          className={styles.filterDrop}
+          name="occupationCategory"
+          value={filterData.occupationCategory}
+          onChange={handleFilterChange}
+        >
+          {occupationCategories.map((val, idx) => (
+            <option key={idx} value={val}>
+              {val}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className={styles.filter}>
+        <span className={styles.filterType}>Birth Year</span>
+        <div className={styles.filterYear}>
+          <input
+            className={styles.minYear}
+            type="number"
+            placeholder="Min Age"
+            name="minAge"
+            value={filterData.minBirthYear}
+            onChange={handleFilterChange}
+          />
+          {/* <select
           className={styles.filterDrop}
           name="minBirthYear"
           value={filterData.minBirthYear}
@@ -166,35 +173,44 @@ const FilterBox = () => {
             );
           })}
         </select> */}
-        <input
-          className={styles.maxYear}
-          type="number"
-          placeholder="Max Age"
-          name="maxAge"
-          value={filterData.maxBirthYear}
-          onChange={handleFilterChange}
-        />
+          <input
+            className={styles.maxYear}
+            type="number"
+            placeholder="Max Age"
+            name="maxAge"
+            value={filterData.maxBirthYear}
+            onChange={handleFilterChange}
+          />
+        </div>{" "}
       </div>
-      <span className={styles.filterType}>Marital Status</span>
-      <select
-        className={styles.filterDrop}
-        name="maritalStatus"
-        value={filterData.maritalStatus}
-        onChange={handleFilterChange}
-      >
-        {maritalStatus.map((val, idx) => (
-          <option key={idx} value={val}>
-            {val}
-          </option>
-        ))}
-      </select>
 
-      <button className={`${styles.filterButton} ${isFilter ? styles.red : ""}`} onClick={applyFilter}>
-        Apply Filter
-      </button>
-      <button className={styles.filterButton} onClick={removeFilter}>
-        Remove Filter
-      </button>
+      <div className={styles.filter}>
+        <span className={styles.filterType}>Marital Status</span>
+        <select
+          className={styles.filterDrop}
+          name="maritalStatus"
+          value={filterData.maritalStatus}
+          onChange={handleFilterChange}
+        >
+          {maritalStatus.map((val, idx) => (
+            <option key={idx} value={val}>
+              {val}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className={styles.filter}>
+        <button
+          className={`${styles.filterButton} ${isFilter ? styles.red : ""}`}
+          onClick={applyFilter}
+        >
+          Apply Filter
+        </button>
+        <button className={styles.filterButton} onClick={removeFilter}>
+          Remove Filter
+        </button>
+      </div>
     </div>
   );
 };

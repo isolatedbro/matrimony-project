@@ -7,8 +7,15 @@
   width: 100%;
   /* padding: 30px; */
 }
+.filter{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  /* flex-direction: column; */
+}
 .filterDrop {
-  width: 200px;
+  width: 60%;
   height: 35px;
   border: 1px solid pink;
   border-radius: 10px;
@@ -41,6 +48,7 @@
 }
 
 .filterType {
+  width: 20%;
   font-size: 18px;
   color: #d85a73;
   font-weight: 600;
@@ -57,4 +65,32 @@
 .red{
   background-color: red;
   color: white;
+}
+
+@media (max-width: 500px){
+  .filterWrapper{
+    /* background-color: #d16379fb; */
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0px;
+    
+  }
+  .filter{
+    justify-content: flex-start;
+  }
+  .filterType{
+    width: calc(20% - 5px);
+    font-size: 16px;  
+    color: white;
+  }
+  .filterDrop{
+    width: calc(70% - 5px);
+  }
+  .filterYear{
+    width: calc(70% - 5px);
+    margin-left: 5px;
+  }
+  .filterButton{
+    margin: 10px;
+  }
 }

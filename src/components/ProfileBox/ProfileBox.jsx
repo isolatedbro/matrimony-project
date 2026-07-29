@@ -1,4 +1,4 @@
-import { useLocation, useOutlet, useOutletContext } from "react-router";
+import { useLocation, useNavigate, useNavigation, useOutlet, useOutletContext } from "react-router";
 import styles from "./ProfileBox.module.css";
 import { useState } from "react";
 
@@ -19,6 +19,7 @@ const ProfileBox = ({ user, params, setIdx, idx,setHide,hide }) => {
   const [requested, setRequested] = useState(false);
   // const [display, setDisplay] = useState("flex");
   const [action, setAction] = useState("");
+  const navigate = useNavigate();
 
   const location = useLocation();
   const handleAction = async (e) => {
@@ -49,6 +50,10 @@ const ProfileBox = ({ user, params, setIdx, idx,setHide,hide }) => {
     }, 500);
   };
 
+  const handleProfileClick = (userId) => {
+    navigate(`/profile/${userId}`);
+  }
+
   
 
   return (
@@ -56,9 +61,9 @@ const ProfileBox = ({ user, params, setIdx, idx,setHide,hide }) => {
       {action === "sent" ? (
         <div className={`${styles.sent} ${styles.appear}`}>Request Sent</div>
       ) : (
-        <div className={styles.card}>
+        <div className={styles.card} onClick={()=>handleProfileClick(user?._id)}>
           <div className={styles.imageWrapper}>
-            {user?._id !== userId &&
+            {/* {user?._id !== userId &&
               location.pathname !== `/profile/${params?.userId}` && location.pathname !== `/all-match/` && location.pathname !== `/all-requests/` && (
                 <div className={styles.buttonWrapper}>
                   <button className={styles.ignore} onClick={handleAction}>
@@ -68,7 +73,7 @@ const ProfileBox = ({ user, params, setIdx, idx,setHide,hide }) => {
                     Send Request
                   </button>
                 </div>
-              )}
+              )} */}
             <img
               className={styles.profilePic}
               src={

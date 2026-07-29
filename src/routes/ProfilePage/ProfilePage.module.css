@@ -1,29 +1,32 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* gap: 10px; */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* gap: 10px; */
 }
-.flexRow{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    gap: 20px;
+.flexRow {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 20px;
 }
-.profileBoxWrapper{
-    width: 25%;
+.profileBoxWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  /* height: 470px; */
 }
-.infoCardWrapper{
-    width: 50%;
+.infoCardWrapper {
+  width: 50%;
 }
 
-.aboutCardWrapper{
-    width: 100%;
-    margin-left: 10px;
-    /* margin-left: 21%; */
+.aboutCardWrapper {
+  width: 100%;
+  margin-left: 10px;
+  /* margin-left: 21%; */
 }
-.match{
-    width: 20%  ;
+.match {
+  width: 20%;
 }
 
 .backButton {
@@ -36,6 +39,74 @@
   border: 1px solid brown;
   border-radius: 10px;
   cursor: pointer;
-  
+
   /* transform: translateX(400px); */
+}
+
+.actionMenu {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+}
+.action {
+  width: 100%;
+  color: #b23a48;
+  font-size: 18px;
+  width: 100px;
+}
+
+.responsive {
+  display: none;
+}
+
+.buttonContainer{
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  width: 100%;
+
+}
+.sendButton{
+  background-color: white;
+  width: 100px;
+  height: 30px;
+  border: 2px solid #b23a48;
+  border-radius: 10px;
+  color: #b23a48;
+  cursor: pointer;
+}
+
+@media (max-width: 500px) {
+  .flexRow {
+    flex-direction: column;
+  }
+  .profileWindow {
+    flex-direction: column;
+  }
+  .profileBoxWrapper {
+    /* display: none; */
+    width: 200px;
+    height: 400px;
+  }
+  .infoCardWrapper {
+    width: 100%;
+  }
+  .button {
+    display: flex;
+    margin-left: 10px;
+    gap: 10px;
+  }
+  .hideInMobile {
+    display: none;
+  }
+  .responsive {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+  }
+  .match {
+    width: 100%;
+  }
 }

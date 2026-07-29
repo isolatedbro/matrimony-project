@@ -17,6 +17,16 @@ const UpdateProfile = () => {
   const [existingGallery, setExistingGallery] = useState([]);
   const [newGallery, setNewGallery] = useState([]);
   const [profileData, setProfileData] = useState({});
+  const [college, setCollege] = useState("");
+  const [qualification, setQualification] = useState("");
+  const [graduationYear, setGraduationYear] = useState("");
+  const [education, setEducation] = useState([]);
+  const [privacy, setPrivacy] = useState([]);
+
+  // console.log("PRIVACY", profileData);
+
+  // console.log("ProfileData", profileData);
+  // console.log("Edu stringify", JSON.stringify(education));
 
   const params = useParams();
   // const [state,setStateCode] = useState("");
@@ -46,7 +56,7 @@ const UpdateProfile = () => {
       });
 
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
 
       setCountryCode(data?.countryCode);
       setStateCode(data?.stateCode);
@@ -56,8 +66,13 @@ const UpdateProfile = () => {
       setCityList([...cities]);
       setExistingProfilePic(data?.profilePic);
       setExistingGallery(data?.gallery);
+      setEducation(data?.education);
+      setPrivacy(data?.privacy);
       delete data?.profilePic;
       delete data?.gallery;
+      delete data?.education;
+      delete data?.privacy;
+      // setPrivacy(JSON.stringify(data?.privacy))
       setProfileData(data);
     };
 
@@ -289,7 +304,7 @@ const UpdateProfile = () => {
   const qualificationArray = [
     "",
     "Doctorate",
-    "Post Graduate/Naster's",
+    "Post Graduate/Master's",
     "Graduate/Bachelors",
     "Diploma/Certifications",
     "Class XII",
@@ -523,7 +538,7 @@ const UpdateProfile = () => {
 
   const handleNext = (e) => {
     e.preventDefault();
-    setPage((prev) => (prev < 8 ? prev + 1 : prev));
+    setPage((prev) => (prev < 10 ? prev + 1 : prev));
   };
 
   const handlePrev = (e) => {
@@ -635,6 +650,34 @@ const UpdateProfile = () => {
       // localStorage.setItem(name, value);
     }
   };
+
+  const handleCollegeDeatils = () => {
+    setEducation((prevData) => [
+      ...prevData,
+      {
+        college: college,
+        graduationYear: graduationYear,
+        qualification: qualification,
+      },
+    ]);
+
+    setCollege("");
+    setGraduationYear("");
+    setQualification("");
+  };
+
+  const handlePrivacyChange = (e) => {
+    const { name, checked } = e.target;
+    if (checked) {
+      setPrivacy((prevData) => [...prevData, name]);
+    } else {
+      setPrivacy((prevData) => prevData?.filter((val) => val !== name));
+    }
+  };
+
+  const removeCollegeDetails = (index) => {
+    setEducation((prevData) => prevData?.filter((val, idx) => idx !== index));
+  };
   // console.log(newProfilePic);
 
   const handleUpdate = async (e) => {
@@ -656,10 +699,19 @@ const UpdateProfile = () => {
       // }
     }
 
+    formData.append("education", JSON.stringify(education));
+    // console.log("EDU", education);
+    // console.log("Edu stringify", JSON.stringify(education));
+    // education.forEach((element) => {
+    //   formData.append("education", JSON.stringify(element));
+    // });
+
     formData.append("profilePic", newProfilePic);
     newGallery.forEach((element) => {
       formData.append("gallery", element);
     });
+
+    formData.append("privacy", JSON.stringify(privacy));
 
     // const keepKeys = ["token"];
     // Object.keys(localStorage).forEach((key) => {
@@ -683,6 +735,10 @@ const UpdateProfile = () => {
     //     body: formData,
     //   },
     // );
+
+    for (const [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
 
     const updatedUserProfile = await fetch(`${API_URL}/users/update`, {
       method: "POST",
@@ -724,7 +780,10 @@ const UpdateProfile = () => {
     }
   };
 
+  console.log("Privacy", privacy);
+
   // console.log(profileData);
+  // console.log("Edu", profileData?.education);
 
   const render = () => {
     switch (page) {
@@ -911,7 +970,7 @@ const UpdateProfile = () => {
               name="college"
             ></input>
 
-            <p className={styles.question}>What is your occupation?</p>
+            <p className={styles.question}>What is your current occupation?</p>
             <select
               className={styles.select}
               value={profileData.occupation}
@@ -952,6 +1011,69 @@ const UpdateProfile = () => {
         );
 
       case 5:
+        return (
+          <div className={`${styles.stepFields} ${styles.flexRow}`}>
+            <div className={styles.left}>
+              <p className={styles.question}>Which college did you go?</p>
+              <input
+                type="text"
+                className={styles.select}
+                value={college}
+                onChange={(e) => setCollege(e.target.value)}
+                name="college"
+              ></input>
+              <p className={styles.question}>
+                Which year did you graduated from this college?
+              </p>
+              <input
+                type="text"
+                className={styles.select}
+                value={graduationYear}
+                onChange={(e) => setGraduationYear(e.target.value)}
+                name="graduationYear"
+              ></input>
+              <p className={styles.question}>
+                What qualification did you earn here?
+              </p>
+              <select
+                className={styles.select}
+                value={qualification}
+                onChange={(e) => setQualification(e.target.value)}
+                name="qualification"
+              >
+                {qualificationArray.map((qualification, index) => (
+                  <option key={index} value={qualification}>
+                    {qualification}
+                  </option>
+                ))}
+              </select>
+              <button
+                className={styles.addButton}
+                onClick={handleCollegeDeatils}
+              >
+                Add
+              </button>
+            </div>
+
+            <div className={styles.right}>
+              {education?.map((val, idx) => (
+                <div key={idx} className={styles.singleItemContainer}>
+                  <p style={{ fontSize: "18px" }}>{val.college}</p>
+                  <p style={{ color: "gray" }}>{val.graduationYear}</p>
+                  <p>{val.qualification}</p>
+                  <button
+                    className={styles.removeButton}
+                    onClick={() => removeCollegeDetails(idx)}
+                  >
+                    Remove
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+
+      case 6:
         return (
           <div className={styles.stepFields}>
             <p className={styles.question}>
@@ -998,7 +1120,7 @@ const UpdateProfile = () => {
           </div>
         );
 
-      case 6:
+      case 7:
         return (
           <div className={styles.stepFields}>
             <p className={styles.question}>
@@ -1044,7 +1166,7 @@ const UpdateProfile = () => {
           </div>
         );
 
-      case 7:
+      case 8:
         return (
           <div className={styles.stepFields}>
             <p className={styles.question}>
@@ -1074,7 +1196,7 @@ const UpdateProfile = () => {
           </div>
         );
 
-      case 8:
+      case 9:
         return (
           <div className={styles.stepFields}>
             <p className={styles.question}>
@@ -1131,6 +1253,37 @@ const UpdateProfile = () => {
             </div>
           </div>
         );
+
+      case 10:
+        return (
+          <div className={styles.stepFields}>
+            <h1>Privacy Check</h1>
+            <h3 className={styles.question}>
+              Which of the following informations you want to keep as public?
+            </h3>
+            <label htmlFor="family" className={styles.label}>
+              Family Details
+              <input
+                className={styles.checkbox}
+                type="checkBox"
+                name="family"
+                checked={privacy.includes("family")}
+                onChange={handlePrivacyChange}
+              />
+            </label>
+
+            <label htmlFor="gallery" className={styles.label}>
+              Gallery Pictures
+              <input
+                className={styles.checkbox}
+                type="checkBox"
+                name="gallery"
+                checked={privacy.includes("gallery")}
+                onChange={handlePrivacyChange}
+              />
+            </label>
+          </div>
+        );
     }
   };
   return (
@@ -1150,7 +1303,7 @@ const UpdateProfile = () => {
           </button>
         )}
 
-        {page !== 8 ? (
+        {page !== 10 ? (
           <button
             className={styles.nextButton}
             type="button"

@@ -248,6 +248,57 @@ input[type="date"]::before {
   cursor: pointer;
 }
 
+.flexRow{
+  flex-direction: row;
+  gap: 110px;
+  width: 70%;
+}
+
+.left{
+  width: 80%;
+}
+
+.right{
+  float: right;
+  width: 20%;
+}
+
+.singleItemContainer{
+  margin: 10px;
+  font-size: 18px;
+}
+
+.label{
+  font-weight: 600;
+}
+.checkbox {
+  margin-left: 10px ;
+  transform: scale(1.5);
+}
+
+.addButton{
+  width: 80px;
+  height: 30px;
+  border: 1px solid #a13d58;
+  border-radius: 10px;
+  margin: 10px;
+  background-color: white;
+  color: #a13d58;
+  font-weight: 600;
+  cursor: pointer;
+
+}
+.removeButton{
+  width: 60px;
+  height: 20px;
+  margin: 5px;
+  background-color: white;
+  border: 1px solid red;
+  border-radius: 5px;
+  color: red;
+  cursor: pointer;
+}
+
 
 
 @keyframes slideIn {
@@ -276,9 +327,8 @@ input[type="date"]::before {
 }
 
 @media (max-width: 560px) {
-  .stepFields {
-    grid-template-columns: 1fr;
-    height: 200px;
-    padding: 10px;
+ 
+  .question{
+    font-size: 20px;
   }
 }

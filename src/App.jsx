@@ -8,6 +8,7 @@ import Header from "./components/Header/Header";
 // import DropDownList from "./components/DropDownList/DropDownList";
 import data from "./data/usStatesCities.json";
 import { Country, State, City } from "country-state-city";
+import NotificationBox from "./components/NotificationBox/NotificationBox";
 // import { getAllStates } from "country-state-city/lib/state";
 
 // "https://server-mat.onrender.com/"
@@ -20,6 +21,9 @@ function App() {
   const [users, setUsers] = useState([]);
   const [tempUsers, setTempUsers] = useState([]);
   const [name, setName] = useState("");
+  const [showNotification, setShowNotification] = useState(true);
+  const [notifications, setNotifications] = useState([]);
+
   useEffect(() => {
     const getUsers = async () => {
       const users = await fetch(`${API_URL}/users/profile/`, {
@@ -60,15 +64,34 @@ function App() {
     getUsers();
   }, []);
 
+  useEffect(()=>{
+    const getNotifications = async() => {
+       const response = await fetch(`${API_URL}/users/get-notifications`, {
+         method: "GET",
+         headers: {
+           authorization: `Bearer ${localStorage.getItem("token")}`,
+         },
+       });
+
+      const data = await response.json();
+      setNotifications(data);
+    }
+
+    getNotifications();
+   
+  },[])
+
   // const date = new Date().toLocaleString().split(',');
   // const x = date.split(',')
   // console.log(date);
 
   // const list = DropDownList();
 
+  // console.log("APP", notifications)
+
   return (
-    <>
-      {isError.length === 0 && <Header userId={userId} users={users} name={name} />}
+    <div className={`appContainer`}>
+      {isError.length === 0 && <Header userId={userId} users={users} name={name} showNotification={showNotification} setShowNotification={setShowNotification} notifications={notifications} />}
       <Outlet
         context={{
           userId,
@@ -82,7 +105,8 @@ function App() {
           token,
         }}
       />
-    </>
+      {/* {showNotification && <div className={`${'notificationBox'} ${'move'} ${'transition'}`}> <NotificationBox setShowNotification={setShowNotification} /> </div>} */}
+    </div>
   );
 }
 

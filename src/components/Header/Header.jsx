@@ -6,11 +6,15 @@ import {
   useNavigation,
   useOutletContext,
 } from "react-router";
-const Header = ({ userId, users, name }) => {
+import NotificationBox from "../NotificationBox/NotificationBox";
+
+
+const Header = ({ userId, users, name, notifications }) => {
   // const {userId} = useOutletContext();
   // const user = users?.find((i) => i._id === userId);
   const [user, setUser] = useState({});
   const [show, setShow] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
   const navigate = useNavigation();
   // const handleLogout = () => {
   //   localStorage.clear();
@@ -38,7 +42,7 @@ const Header = ({ userId, users, name }) => {
     localStorage.clear();
     window.location.href = "/";
   };
-  // console.log("USER", user);
+  // console.log("HEader", notifications);
   return (
     <header className={styles.header}>
       <div className={styles.logoContainer}>
@@ -60,13 +64,26 @@ const Header = ({ userId, users, name }) => {
         />
         {show && (
           <div className={styles.menu}>
-            <Link to={`/profile/${userId}`} className={styles.action}>
+            <a href={`/profile/${userId}`} className={styles.action}>
               Account
-            </Link>
+            </a>
             <a href="#" className={styles.action} onClick={handleActions}>
               Logout
             </a>
-            <p></p>
+          </div>
+        )}
+      </div>
+      <div
+        className={styles.notificationContainer}
+        onMouseEnter={() => setShowNotification(true)}
+        onMouseLeave={() => setShowNotification(false)}
+      >
+        <a className={styles.notification}>Notifcation</a>
+        {showNotification && (
+          <div
+            className={`${styles.notificationBox} ${!showNotification ? styles.slideAway : ""}`}
+          >
+            <NotificationBox notifications={notifications} name={name} />
           </div>
         )}
       </div>

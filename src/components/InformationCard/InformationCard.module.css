@@ -1,4 +1,6 @@
-.container,.workDetail,.section{
+.container,
+.workDetail,
+.section {
   display: grid;
   grid-template-columns: auto auto auto;
   width: 100%;
@@ -7,7 +9,8 @@
   border-radius: 10px;
   margin: 10px;
 }
-.infoWrapper, .workInfo {
+.infoWrapper,
+.workInfo {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,10 +32,26 @@
   font-weight: 600;
   color: #2e2e2e;
 }
-.title{
-    margin-left: 10px;
+.title {
+  margin-left: 10px;
 }
 
+.flexCol {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid #b23a48;
+  border-radius: 10px;
+  margin: 10px;
+}
+.flexRow {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.galleryImage{
+  width: 200px;
+}
 /* .workDetail {
   padding: 18px 20px 22px;
   display: flex;
@@ -51,3 +70,18 @@
   padding-bottom: 8px;
   border-bottom: 1px solid #f2dfe3;
 } */
+
+@media (max-width: 500px) {
+  .container,
+  .workDetail,
+  .section {
+    display: flex;
+    flex-wrap: wrap;
+    width: 95%;
+  }
+  .infoWrapper,
+  .workInfo {
+    flex-direction: row;
+    gap: 5px;
+  }
+}

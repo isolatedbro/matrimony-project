@@ -3,7 +3,7 @@ import styles from "./UserRegistration.module.css";
 import { useOutletContext } from "react-router";
 
 const UserRegistration = () => {
-  const {API_URL} = useOutletContext();
+  const { API_URL } = useOutletContext();
   const [page, setPage] = useState(1);
 
   const handleNext = (e) => {
@@ -25,6 +25,7 @@ const UserRegistration = () => {
     dateOfBirth: "",
     email: "",
     phoneNumber: "",
+    linkedin: "",
     password: "",
     confirmPassword: "",
   });
@@ -41,7 +42,7 @@ const UserRegistration = () => {
     e.preventDefault();
 
     console.log(registrationData);
-   
+
     const res = await fetch(`${API_URL}/auth/new-registration`, {
       method: "POST",
       headers: {
@@ -54,12 +55,10 @@ const UserRegistration = () => {
     if (x.error) {
       setErrors([...x.error]);
     } else {
-      localStorage.setItem('token',x.token);
+      localStorage.setItem("token", x.token);
       window.location.href = "/update-profile";
     }
   };
-
- 
 
   const renderStep = () => {
     switch (page) {
@@ -125,7 +124,21 @@ const UserRegistration = () => {
           </div>
         );
 
-      case 3:
+      case 4:
+        return (
+          <div className={styles.stepFields}>
+            <input
+              className={styles.input}
+              type="text"
+              placeholder="Your Linkedin profile link"
+              value={registrationData.linkedin}
+              onChange={handleChange}
+              name="linkedin"
+            ></input>
+          </div>
+        );
+
+      case 5:
       default:
         return (
           <div className={styles.stepFields}>

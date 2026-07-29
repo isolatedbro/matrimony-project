@@ -46,7 +46,11 @@ const AllMatch = () => {
           ))
         ) : (
           <div className={styles.noMatch}>
-            <p className={styles.noMatchMessage}>You have currently no Match</p>
+            {!show && (
+              <p className={styles.noMatchMessage}>
+                You have currently no Match
+              </p>
+            )}
           </div>
         )}
 
@@ -55,7 +59,16 @@ const AllMatch = () => {
           </div>} */}
         {show && (
           <div className={`${styles.profileWindow} ${styles.move}`}>
-            <div className={styles.profileBoxWrapper}>
+            <div className={styles.button}>
+              <button
+                className={`${styles.backButton}`}
+                onClick={() => setShow(!show)}
+              >
+                Go Back
+              </button>
+              <button className={`${styles.backButton}`}>Chat</button>
+            </div>
+            <div className={`${styles.profileBoxWrapper} ${styles.hideInMobile}`}>
               {user && <ProfileBox user={user} />}
             </div>
             <div className={styles.infoCardWrapper}>

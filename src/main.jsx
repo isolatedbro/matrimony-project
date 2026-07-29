@@ -12,6 +12,7 @@ import Login from "./routes/Auth/Login.jsx";
 import UpdateProfile from "./routes/UpdateProfile/UpdateProfile.jsx";
 import AllMatch from "./routes/Matches/AllMatch.jsx";
 import AllRequests from "./routes/Requests/AllRequests.jsx";
+import Payment from "./routes/Payment/Payment.jsx";
 
 
 
@@ -36,7 +37,8 @@ const router = createBrowserRouter([
 
       { path: "profile/:userId", Component: ProfilePage },
       {path: "all-match", Component: AllMatch},
-      {path: "all-requests", Component: AllRequests}
+      {path: "all-requests", Component: AllRequests},
+      {path: "payment", Component: Payment}
     ],
   },
 ]);

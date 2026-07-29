@@ -1,6 +1,9 @@
+import { useOutletContext } from "react-router";
 import styles from "./InformationCard.module.css";
 
-const InformationCard = ({user}) => {
+const InformationCard = ({ user }) => {
+  const { userId } = useOutletContext();
+  console.log(user?.gallery);
   return (
     <>
       <div className={styles.container}>
@@ -9,15 +12,15 @@ const InformationCard = ({user}) => {
           <p className={styles.value}>{user?.dateOfBirth}</p>
         </div>
 
-        <div className={styles.infoWrapper}>
+        {/* <div className={styles.infoWrapper}>
           <p className={styles.attr}>Phone Number</p>
           <p className={styles.value}>{user?.phoneNumber}</p>
-        </div>
+        </div> */}
 
-        <div className={styles.infoWrapper}>
+        {/* <div className={styles.infoWrapper}>
           <p className={styles.attr}>Email</p>
           <p className={styles.value}>{user?.email}</p>
-        </div>
+        </div> */}
 
         <div className={styles.infoWrapper}>
           <p className={styles.attr}>Religion</p>
@@ -44,14 +47,14 @@ const InformationCard = ({user}) => {
           <p className={styles.value}>Ocassionally Nonvegeterian</p>
         </div> */}
 
-        <div className={styles.infoWrapper}>
+        {/* <div className={styles.infoWrapper}>
           <p className={styles.attr}>Highest Qualification</p>
           <p className={styles.value}>{user?.qualification}</p>
         </div>
         <div className={styles.infoWrapper}>
           <p className={styles.attr}>College Name</p>
           <p className={styles.value}>{user?.college}</p>
-        </div>
+        </div> */}
 
         <div className={styles.infoWrapper}>
           <p className={styles.attr}>Income</p>
@@ -75,6 +78,26 @@ const InformationCard = ({user}) => {
         </p>
       </div>
 
+      <h4 className={styles.title}>Educational Details</h4>
+      <div className={styles.flexCol}>
+        {user?.education?.map((item, idx) => (
+          <div key={idx} className={styles.flexRow}>
+            <p className={styles.infoWrapper}>
+              <span className={styles.attr}>College/Institute :</span>
+              <span className={styles.value}>{item?.college}</span>
+            </p>
+            <p className={styles.infoWrapper}>
+              <span className={styles.attr}>Qualification :</span>
+              <span className={styles.value}>{item?.qualification}</span>
+            </p>
+            <p className={styles.infoWrapper}>
+              <span className={styles.attr}>Graduation Year :</span>
+              <span className={styles.value}>{item?.graduationYear}</span>
+            </p>
+          </div>
+        ))}
+      </div>
+
       <h4 className={styles.title}>Address</h4>
       <div className={styles.section}>
         <p className={styles.infoWrapper}>
@@ -92,25 +115,41 @@ const InformationCard = ({user}) => {
         </p>
       </div>
 
-      <h4 className={styles.title}>Family</h4>
-      <div className={styles.section}>
-        <p className={styles.infoWrapper}>
-          <span className={styles.attr}>Father's Status :</span>
-          <span className={styles.value}>{user?.fathersStatus}</span>
-        </p>
+      {(userId === user?._id ||
+        user?.privacy?.includes("family") === false) && (
+        <>
+          <h4 className={styles.title}>Family</h4>
+          <div className={styles.section}>
+            <p className={styles.infoWrapper}>
+              <span className={styles.attr}>Father's Status :</span>
+              <span className={styles.value}>{user?.fathersStatus}</span>
+            </p>
 
-        <p className={styles.infoWrapper}>
-          <span className={styles.attr}>Father's Occupation :</span>
-          <span className={styles.value}>{user?.fathersOccupation}</span>
-        </p>
-        <p className={styles.infoWrapper}>
-          <span className={styles.attr}>Mother's Status :</span>
-          <span className={styles.value}>{user?.mothersStatus}</span>
-        </p>
-        <p className={styles.infoWrapper}>
-          <span className={styles.attr}>Mother's Occupation :</span>
-          <span className={styles.value}>{user?.mothersOccupation}</span>
-        </p>
+            <p className={styles.infoWrapper}>
+              <span className={styles.attr}>Father's Occupation :</span>
+              <span className={styles.value}>{user?.fathersOccupation}</span>
+            </p>
+            <p className={styles.infoWrapper}>
+              <span className={styles.attr}>Mother's Status :</span>
+              <span className={styles.value}>{user?.mothersStatus}</span>
+            </p>
+            <p className={styles.infoWrapper}>
+              <span className={styles.attr}>Mother's Occupation :</span>
+              <span className={styles.value}>{user?.mothersOccupation}</span>
+            </p>
+          </div>
+        </>
+      )}
+
+      <h4 className={styles.title}>{`${user?.firstName}'s Pictures`}</h4>
+      <div className={styles.flexRow}>
+        {user?.gallery?.map((val, idx) => (
+          <img
+            className={styles.galleryImage}
+            key={idx}
+            src={`http://localhost:3000/uploads/6a5dbe98af0fb96d32ad9f51/gallery/1784611977867.png`}
+          ></img>
+        ))}
       </div>
     </>
   );
