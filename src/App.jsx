@@ -217,21 +217,21 @@ function App() {
         />
       }
       <main className={`main`}>
-          <Outlet
-            context={{
-              secTheme,
-              userId,
-              setUserId,
-              isError,
-              setIsError,
-              users,
-              setUsers,
-              tempUsers,
-              API_URL,
-              token,
-              user,
-            }}
-          />    
+        <Outlet
+          context={{
+            secTheme,
+            userId,
+            setUserId,
+            isError,
+            setIsError,
+            users,
+            setUsers,
+            tempUsers,
+            API_URL,
+            token,
+            user,
+          }}
+        />
       </main>
 
       <Footer theme={theme} />
@@ -241,10 +241,3 @@ function App() {
 }
 
 export default App;
-
-
-
-
-// {user?.gender === "" || user?.dob === "" || user?.occupation === "" ? (
-//             <UpdateProfile/>
-//         ) : (something else)
