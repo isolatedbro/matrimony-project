@@ -6,7 +6,7 @@ const LandingPage = () => {
    window.location.href = `https://www.linkedin.com/oauth/v2/authorization
 ?response_type=code
 &client_id=77jgvxd9i1dsg7
-&redirect_uri=http://localhost:3000/auth/linkedin/callback
+&redirect_uri=${import.meta.env.VITE_REDIRECT_URI}/auth/linkedin/callback
 &scope=openid profile email
 &state=randomString`;
   }
