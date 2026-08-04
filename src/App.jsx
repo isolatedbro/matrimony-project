@@ -53,7 +53,7 @@ function App() {
     };
 
     const getUserProfile = async () => {
-      console.log("GET USER PROFILE");
+      // console.log("GET USER PROFILE");
       const users = await fetch(`${API_URL}/users/profile/`, {
         method: "GET",
         headers: {
@@ -63,7 +63,7 @@ function App() {
 
       const result = await users.json();
 
-      console.log("USER PROFILE", result);
+      // console.log("USER PROFILE", result);
       if (result?.error) {
         setIsError("Authentication Failed");
         localStorage.clear();
