@@ -61,7 +61,10 @@ const ProfileBox = ({ user, params, setIdx, idx,setHide,hide }) => {
       {action === "sent" ? (
         <div className={`${styles.sent} ${styles.appear}`}>Request Sent</div>
       ) : (
-        <div className={styles.card} onClick={()=>handleProfileClick(user?._id)}>
+        <div
+          className={styles.card}
+          onClick={() => handleProfileClick(user?._id)}
+        >
           <div className={styles.imageWrapper}>
             {/* {user?._id !== userId &&
               location.pathname !== `/profile/${params?.userId}` && location.pathname !== `/all-match/` && location.pathname !== `/all-requests/` && (
@@ -78,7 +81,7 @@ const ProfileBox = ({ user, params, setIdx, idx,setHide,hide }) => {
               className={styles.profilePic}
               src={
                 user?.profilePic?.length > 0
-                  ? `${IMAGE_URL}${user?.profilePic[0]?.path}`
+                  ? `${IMAGE_URL}/uploads/${userId}/profilePic/${user?.profilePic[0]?.filename}`
                   : `/defaultProfilePic.jpg`
               }
               alt="profilePic"
@@ -94,7 +97,7 @@ const ProfileBox = ({ user, params, setIdx, idx,setHide,hide }) => {
             </p>
             <p className={styles.profileInfo}>
               <span className={styles.attr}>Age :</span>
-              <span className={styles.value}>{age!==0?age:"--"}</span>
+              <span className={styles.value}>{age !== 0 ? age : "--"}</span>
             </p>
             <p className={styles.profileInfo}>
               <span className={styles.attr}>City :</span>
