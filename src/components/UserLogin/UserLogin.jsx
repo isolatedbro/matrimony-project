@@ -88,13 +88,23 @@ const UserLogin = () => {
                 name="password"
               />
 
-              <button
-                className={styles.nextButton}
-                type="submit"
-                onClick={handleLoginButton}
-              >
-                Login
-              </button>
+              <div clasName={styles.buttonContainer}>
+                <button
+                  className={styles.nextButton}
+                  type="submit"
+                  onClick={handleLoginButton}
+                >
+                  Login
+                </button>
+
+                <button
+                  className={styles.linkedinButton}
+                  type="submit"
+                  onClick={handleLoginButton}
+                >
+                  Login with LinkedIn
+                </button>
+              </div>
             </div>
           </div>
         </div>

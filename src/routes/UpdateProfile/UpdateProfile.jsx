@@ -5,7 +5,7 @@ import { useOutletContext, useParams } from "react-router";
 const IMAGE_URL = import.meta.env.VITE_IMAGE_URL;
 
 const UpdateProfile = () => {
-  const { users, userId, API_URL } = useOutletContext();
+  const {userId, API_URL, user } = useOutletContext();
   const { token } = useOutletContext();
   const [page, setPage] = useState(1);
   const [stateList, setStateList] = useState([]);
@@ -22,6 +22,15 @@ const UpdateProfile = () => {
   const [graduationYear, setGraduationYear] = useState("");
   const [education, setEducation] = useState([]);
   const [privacy, setPrivacy] = useState([]);
+
+  // console.log(user);
+  console.log(privacy);
+
+  // if(!token){
+  //   const params = new URLSearchParams(window.location.search);
+  //   const token = params.get("token");
+  //   localStorage.setItem("token", token);
+  // }
 
   // console.log("PRIVACY", profileData);
 
@@ -56,7 +65,9 @@ const UpdateProfile = () => {
       });
 
       const data = await res.json();
-      // console.log(data);
+      console.log(data);
+
+      // const data = user;
 
       setCountryCode(data?.countryCode);
       setStateCode(data?.stateCode);
@@ -88,6 +99,7 @@ const UpdateProfile = () => {
   }, []);
 
   // console.log(profileData);
+  console.log(existingProfilePic);
 
   // const [profileData, setProfileData] = useState({
   //   religion: localStorage.getItem("religion") || "",
@@ -538,7 +550,7 @@ const UpdateProfile = () => {
 
   const handleNext = (e) => {
     e.preventDefault();
-    setPage((prev) => (prev < 10 ? prev + 1 : prev));
+    setPage((prev) => (prev < 11 ? prev + 1 : prev));
   };
 
   const handlePrev = (e) => {
@@ -652,14 +664,14 @@ const UpdateProfile = () => {
   };
 
   const handleCollegeDeatils = () => {
-    setEducation((prevData) => [
-      ...prevData,
-      {
-        college: college,
-        graduationYear: graduationYear,
-        qualification: qualification,
-      },
-    ]);
+    const arr = Array.isArray(education) ? education : [];
+
+    arr.push({
+      college: college,
+      graduationYear: graduationYear,
+      qualification: qualification,
+    });
+    setEducation(arr);
 
     setCollege("");
     setGraduationYear("");
@@ -668,15 +680,20 @@ const UpdateProfile = () => {
 
   const handlePrivacyChange = (e) => {
     const { name, checked } = e.target;
+    // console.log(name,checked)
+
+    const arr = Array.isArray(privacy) ? privacy : [];
     if (checked) {
-      setPrivacy((prevData) => [...prevData, name]);
+      arr.push(name);
+      setPrivacy((prev) => [...prev, name]);
     } else {
-      setPrivacy((prevData) => prevData?.filter((val) => val !== name));
+      setPrivacy((prev) => prev?.filter((val) => val !== name));
     }
   };
 
   const removeCollegeDetails = (index) => {
-    setEducation((prevData) => prevData?.filter((val, idx) => idx !== index));
+    const arr = Array.isArray(education) ? education : [];
+    setEducation(arr?.filter((val, idx) => idx !== index));
   };
   // console.log(newProfilePic);
 
@@ -780,14 +797,61 @@ const UpdateProfile = () => {
     }
   };
 
-  console.log("Privacy", privacy);
+  // console.log("Privacy", privacy);
 
   // console.log(profileData);
   // console.log("Edu", profileData?.education);
 
+  const showProfilePic = () => {
+    if (newProfilePic && newProfilePic.length !== 0) {
+      return URL.createObjectURL(newProfilePic);
+    } else if (existingProfilePic && existingProfilePic.length > 0) {
+      return `${IMAGE_URL}/uploads/${userId}/profilePic/${existingProfilePic[0].filename}`;
+    } else if (profileData?.linkedinPicture?.length > 0) {
+      return profileData?.linkedinPicture;
+    }
+  };
+
+  console.log(newProfilePic);
+
   const render = () => {
     switch (page) {
       case 1:
+        return (
+          <div className={styles.stepFields}>
+            <p className={styles.question}>What is your gender?</p>
+            <select
+              className={styles.select}
+              value={profileData?.gender}
+              onChange={handleChange}
+              name="gender"
+            >
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+
+            <p className={styles.question}>When did you born?</p>
+            <input
+              className={styles.input}
+              type="date"
+              value={profileData?.dateOfBirth}
+              onChange={handleChange}
+              name="dateOfBirth"
+              data-placeholder="Date of Birth"
+            />
+            <p className={styles.question}>Do you have a contact number?</p>
+            <input
+              type="text"
+              className={styles.input}
+              value={profileData?.phoneNumber}
+              onChange={handleChange}
+              name="phoneNumber"
+            />
+          </div>
+        );
+
+      case 2:
         return (
           <div className={styles.stepFields}>
             <p className={styles.question}>What is your Religion?</p>
@@ -835,7 +899,7 @@ const UpdateProfile = () => {
             </select>
           </div>
         );
-      case 2:
+      case 3:
         return (
           <div className={styles.stepFields}>
             <p className={styles.question}>What is your marital status?</p>
@@ -880,7 +944,7 @@ const UpdateProfile = () => {
             </select>
           </div>
         );
-      case 3:
+      case 4:
         return (
           <div className={styles.stepFields}>
             <p className={styles.question}>In which country do you live?</p>
@@ -897,12 +961,12 @@ const UpdateProfile = () => {
               ))}
             </select>
 
-            {profileData.country.length !== 0 && (
+            {profileData?.country?.length !== 0 && (
               <p className={styles.question}>
-                Where do you live in {profileData.country}?
+                Where do you live in {profileData?.country}?
               </p>
             )}
-            {profileData.country.length !== 0 && (
+            {profileData?.country?.length !== 0 && (
               <select
                 className={styles.select}
                 value={profileData.state}
@@ -910,7 +974,7 @@ const UpdateProfile = () => {
                 name="state"
               >
                 <option value=""></option>
-                {stateList.map((val, idx) => (
+                {stateList?.map((val, idx) => (
                   <option key={idx} data-code={val.isoCode} value={val.name}>
                     {val.name}
                   </option>
@@ -918,13 +982,13 @@ const UpdateProfile = () => {
               </select>
             )}
 
-            {profileData.state.length !== 0 && (
+            {profileData?.state?.length !== 0 && (
               <p className={styles.question}>
                 In Which city of {profileData.state} {profileData.country} do
                 you live?
               </p>
             )}
-            {profileData.state.length !== 0 && (
+            {profileData?.state?.length !== 0 && (
               <select
                 className={styles.select}
                 value={profileData.city}
@@ -942,38 +1006,42 @@ const UpdateProfile = () => {
           </div>
         );
 
-      case 4:
+      case 5:
         return (
           <div className={styles.stepFields}>
-            <p className={styles.question}>
-              What is your highest qualification?
-            </p>
-            <select
-              className={styles.select}
-              value={profileData.qualification}
-              onChange={handleChange}
-              name="qualification"
-            >
-              {qualificationArray.map((qualification, index) => (
-                <option key={index} value={qualification}>
-                  {qualification}
-                </option>
-              ))}
-            </select>
+            {/*
+              <>
+                <p className={styles.question}>
+                  What is your highest qualification?
+                </p>
+                <select
+                  className={styles.select}
+                  value={profileData.qualification}
+                  onChange={handleChange}
+                  name="qualification"
+                >
+                  {qualificationArray.map((qualification, index) => (
+                    <option key={index} value={qualification}>
+                      {qualification}
+                    </option>
+                  ))}
+                </select>
 
-            <p className={styles.question}>Which college did you go?</p>
-            <input
-              type="text"
-              className={styles.select}
-              value={profileData.college}
-              onChange={handleChange}
-              name="college"
-            ></input>
+                <p className={styles.question}>Which college did you go?</p>
+                <input
+                  type="text"
+                  className={styles.select}
+                  value={profileData.college}
+                  onChange={handleChange}
+                  name="college"
+                ></input>
+              </>
+            */}
 
             <p className={styles.question}>What is your current occupation?</p>
             <select
               className={styles.select}
-              value={profileData.occupation}
+              value={profileData?.occupation}
               onChange={handleChange}
               name="occupation"
             >
@@ -1010,7 +1078,7 @@ const UpdateProfile = () => {
           </div>
         );
 
-      case 5:
+      case 6:
         return (
           <div className={`${styles.stepFields} ${styles.flexRow}`}>
             <div className={styles.left}>
@@ -1073,7 +1141,7 @@ const UpdateProfile = () => {
           </div>
         );
 
-      case 6:
+      case 7:
         return (
           <div className={styles.stepFields}>
             <p className={styles.question}>
@@ -1120,7 +1188,7 @@ const UpdateProfile = () => {
           </div>
         );
 
-      case 7:
+      case 8:
         return (
           <div className={styles.stepFields}>
             <p className={styles.question}>
@@ -1166,7 +1234,7 @@ const UpdateProfile = () => {
           </div>
         );
 
-      case 8:
+      case 9:
         return (
           <div className={styles.stepFields}>
             <p className={styles.question}>
@@ -1180,23 +1248,23 @@ const UpdateProfile = () => {
               name="profilePic"
               onChange={handleChange}
             />
-            {existingProfilePic && (
-              <img
-                key="prifilePicPreview"
-                // src={URL.createObjectURL(profileData.profilePic) || ""}
-                src={
-                  existingProfilePic.length > 0
-                    ? `${IMAGE_URL}/uploads/${userId}/profilePic/${existingProfilePic[0].filename}`
-                    : URL.createObjectURL(newProfilePic)
-                }
-                alt="Preview"
-                width={400}
-              />
-            )}
+
+            <img
+              key="prifilePicPreview"
+              // src={URL.createObjectURL(profileData.profilePic) || ""}
+              // src={
+              //   existingProfilePic.length > 0
+              //     ? `${IMAGE_URL}/uploads/${userId}/profilePic/${existingProfilePic[0].filename}`
+              //     : URL.createObjectURL(newProfilePic)
+              // }
+              src={showProfilePic()}
+              alt="Preview"
+              width={400}
+            />
           </div>
         );
 
-      case 9:
+      case 10:
         return (
           <div className={styles.stepFields}>
             <p className={styles.question}>
@@ -1254,7 +1322,7 @@ const UpdateProfile = () => {
           </div>
         );
 
-      case 10:
+      case 11:
         return (
           <div className={styles.stepFields}>
             <h1>Privacy Check</h1>
@@ -1267,7 +1335,7 @@ const UpdateProfile = () => {
                 className={styles.checkbox}
                 type="checkBox"
                 name="family"
-                checked={privacy.includes("family")}
+                checked={privacy?.includes("family")}
                 onChange={handlePrivacyChange}
               />
             </label>
@@ -1278,7 +1346,7 @@ const UpdateProfile = () => {
                 className={styles.checkbox}
                 type="checkBox"
                 name="gallery"
-                checked={privacy.includes("gallery")}
+                checked={privacy?.includes("gallery")}
                 onChange={handlePrivacyChange}
               />
             </label>
@@ -1303,7 +1371,7 @@ const UpdateProfile = () => {
           </button>
         )}
 
-        {page !== 10 ? (
+        {page !== 11 ? (
           <button
             className={styles.nextButton}
             type="button"

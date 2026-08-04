@@ -14,11 +14,11 @@ const Authentcation = () => {
   };
   return (
     <>
-      <img
+      {/* <img
         className={styles.backgroundImage}
         src="/weddingpic.png"
         alt="india bride and groom"
-      />
+      /> */}
       <div className={styles.container}>
         <div className={styles.leftBox}>
           <h1 className={styles.welcomeMessage}>LinkedIn Matrimony</h1>
@@ -28,6 +28,7 @@ const Authentcation = () => {
           </p>
         </div>
         <div className={styles.rightBox}>
+          
           <button className={styles.authButton} onClick={handleButtonClick}>
             Login
           </button>

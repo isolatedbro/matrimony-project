@@ -4,10 +4,12 @@
   display: grid;
   grid-template-columns: auto auto auto;
   width: 100%;
-  /* background: #f7e7eb; */
-  border: 1px solid #b23a48;
+  /* background: rgb(237, 237, 237); */
+  background: #edf3f9;
+  /* border: 1px solid #b23a48; */
   border-radius: 10px;
   margin: 10px;
+  box-shadow: 0 12px 30px rgba((237, 237, 237), 0.14);
 }
 .infoWrapper,
 .workInfo {
@@ -23,24 +25,27 @@
 }
 
 .attr {
-  font-weight: 700;
-  color: #b23a48;
+  font-weight: 600;
+  font-size: 15px;
+  color: black;
   margin-bottom: 2px;
 }
 .value {
   text-align: right;
   font-weight: 600;
+  font-size: 15px;
   color: #2e2e2e;
 }
 .title {
   margin-left: 10px;
+  font-weight: 600;
 }
 
 .flexCol {
   display: flex;
   flex-direction: column;
   width: 100%;
-  border: 1px solid #b23a48;
+  /* border: 1px solid #b23a48; */
   border-radius: 10px;
   margin: 10px;
 }
@@ -49,7 +54,7 @@
   justify-content: space-evenly;
 }
 
-.galleryImage{
+.galleryImage {
   width: 200px;
 }
 /* .workDetail {

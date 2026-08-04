@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(135deg, #fff7f2 0%, #ffe8e1 50%, #fdf2f8 100%);
+  /* background: linear-gradient(135deg, #fff7f2 0%, #ffe8e1 50%, #fdf2f8 100%); */
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -19,7 +19,7 @@
   
   box-shadow: 0 20px 60px rgba(117, 58, 82, 0.18);
   /* background: rgba(255, 255, 255, 0.96); */
-  background-color: rgba(253, 52, 52, 0.63);
+  /* background-color: rgba(253, 52, 52, 0.63); */
   /* border: 1px solid rgba(217, 129, 150, 0.25); */
   /* padding: 20px; */
   z-index: 1;
@@ -40,7 +40,7 @@
   align-items: center;
   width: 50%;
   height: 100vh;
-  background-color: rgba(255, 255, 0, 0.295);
+  /* background-color: rgba(255, 255, 0, 0.295); */
   position: relative;
 }
 
@@ -71,9 +71,10 @@
 }
 
 .welcomeMessage{
-    color: #fdf2f8;
+    /* color: #fdf2f8; */
+    color: black;
 }
 .message{
-    color: white;
+    color: black;
     font-size: 18px;
 }

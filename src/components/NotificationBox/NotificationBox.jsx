@@ -63,7 +63,7 @@ const NotificationBox = ({ notifications, name }) => {
   return (
     <>
       <div className={styles.notificationContainer} onMouseLeave={() => {}}>
-        {notifications?.map(
+        {Array.isArray(notifications) && notifications?.map(
           (item, idx) =>
             item?.message !== "accepted" && ( setCount(count+1),
               <div key={idx} className={styles.notification}>

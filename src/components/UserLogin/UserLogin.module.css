@@ -4,7 +4,8 @@
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background: linear-gradient(135deg, #fff7f2 0%, #ffe8e1 50%, #fdf2f8 100%);
+  /* background: linear-gradient(135deg, #fff7f2 0%, #ffe8e1 50%, #fdf2f8 100%); */
+  background: linear-gradient(135deg, #f3f8fb 0%, #e8f3f9 50%, #f7fbfd 100%);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -23,7 +24,8 @@
 .hero {
   padding: 40px;
   color: #ffffff;
-  background: linear-gradient(135deg, #b33d5b 0%, #d65f78 48%, #7f2f4c 100%);
+  /* background: linear-gradient(135deg, #b33d5b 0%, #d65f78 48%, #7f2f4c 100%); */
+  background: linear-gradient(135deg, #015786 0%, #0273b2 50%, #3395cb 100%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -73,7 +75,12 @@
   color: #9d7782;
   font-size: 1.2rem;
 }
-
+.buttonContainer {
+  display: flex;
+  /* justify-content: space-between; */
+  width: 80%;
+  margin-top: 20px;
+}
 .nextButton {
   background: linear-gradient(135deg, #c94d6b, #8f2b4f);
   color: #ffffff;
@@ -93,4 +100,17 @@
 
 .nextButton:hover {
   box-shadow: 0 12px 22px rgba(141, 46, 74, 0.25);
+}
+
+.linkedinButton {
+  background: linear-gradient(135deg, #0967c2, #0273b2);
+  float: right;
+  color: #ffffff;
+  box-shadow: 0 10px 20px rgba(141, 46, 74, 0.2);
+  width: 40%;
+  height: 45px;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
 }

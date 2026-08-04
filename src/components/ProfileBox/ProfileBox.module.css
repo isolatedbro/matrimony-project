@@ -99,11 +99,13 @@
 }
 
 .attr {
-  font-weight: 700;
-  color: #b23a48;
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
 }
 
 .value {
+  font-size: 16px;
   text-align: right;
   font-weight: 600;
   color: #2e2e2e;

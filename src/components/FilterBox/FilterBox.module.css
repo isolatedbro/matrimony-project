@@ -2,26 +2,45 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
   /* background-color: #d163794f; */
   width: 100%;
   /* padding: 30px; */
 }
-.filter{
+.filter {
   display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: center;
+  /* background-color: white; */
   /* flex-direction: column; */
+  position: relative;
 }
+
+.birthYear {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.inputLabel {
+  width: 50%;
+  font-size: 16px;
+  /* color: #d85a73; */
+  color: "black";
+  font-weight: 600;
+}
+
 .filterDrop {
-  width: 60%;
-  height: 35px;
+  width: 50%;
+  height: 25px;
   border: 1px solid pink;
   border-radius: 10px;
   background-color: white;
   margin: 5px;
-  font-size: 18px;
+  font-size: 16px;
   text-align: center;
   color: rgb(53, 53, 53);
 }
@@ -29,13 +48,13 @@
 .filterYear {
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 50%;
   gap: 5px;
 }
 
 .minYear,
 .maxYear {
-  width: 50%;
+  width: 80%;
   height: 35px;
   border: 1px solid pink;
   border-radius: 10px;
@@ -44,17 +63,26 @@
 
 .maxYear::placeholder,
 .minYear::placeholder {
-  font-size: 18px;
+  font-size: 15 px;
 }
 
 .filterType {
-  width: 20%;
-  font-size: 18px;
-  color: #d85a73;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 60%;
+  font-size: 16px;
+  /* color: #d85a73; */
+  color: "black";
   font-weight: 600;
+
+  border: 1px solid black;
+  border-radius: 10px;
+  padding-left: 10px;
 }
 
-.filterButton{
+.filterButton {
   width: 100px;
   height: 30px;
   background-color: white;
@@ -62,35 +90,96 @@
   border-radius: 10px;
   cursor: pointer;
 }
-.red{
+.red {
   background-color: red;
   color: white;
 }
 
-@media (max-width: 500px){
-  .filterWrapper{
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: absolute;
+  left: 0;
+  top: 28px;
+
+  width: 240px;
+  max-height: 250px;
+  padding: 16px;
+
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+
+  overflow-y: auto;
+  z-index: 2;
+  /* opacity: 0; */
+
+  /* border: 2px solid red; */
+}
+.label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.options input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.inputWrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  /* position: absolute; */
+}
+
+.hide {
+  display: none;
+}
+
+.width50pc{
+   width: 50%;
+}
+
+.blue{
+  background-color: blue;
+  color: white;
+}
+
+.grey{
+  background-color: grey;
+  color: white;
+}
+
+@media (max-width: 500px) {
+  .filterWrapper {
     /* background-color: #d16379fb; */
     flex-direction: row;
     flex-wrap: wrap;
     gap: 0px;
-    
   }
-  .filter{
+  .filter {
     justify-content: flex-start;
   }
-  .filterType{
+  .filterType {
     width: calc(20% - 5px);
-    font-size: 16px;  
+    font-size: 16px;
     color: white;
   }
-  .filterDrop{
+  .filterDrop {
     width: calc(70% - 5px);
   }
-  .filterYear{
+  .filterYear {
     width: calc(70% - 5px);
     margin-left: 5px;
   }
-  .filterButton{
+  .filterButton {
     margin: 10px;
   }
 }

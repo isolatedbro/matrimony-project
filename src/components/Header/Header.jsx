@@ -9,7 +9,7 @@ import {
 import NotificationBox from "../NotificationBox/NotificationBox";
 
 
-const Header = ({ userId, users, name, notifications }) => {
+const Header = ({theme, userId, users, name, notifications, isError }) => {
   // const {userId} = useOutletContext();
   // const user = users?.find((i) => i._id === userId);
   const [user, setUser] = useState({});
@@ -30,7 +30,7 @@ const Header = ({ userId, users, name, notifications }) => {
   }, [userId]);
 
   const handleActions = (e) => {
-    console.log(e.target.innerText);
+    // console.log(e.target.innerText);
     // if (e.target.innerText === "Profile") {
     //   // navigate(`/profile/${userId}`);
     //   console.log("userId",userId);
@@ -43,50 +43,57 @@ const Header = ({ userId, users, name, notifications }) => {
     window.location.href = "/";
   };
   // console.log("HEader", notifications);
+  // console.log("Header user", user);
   return (
-    <header className={styles.header}>
+    <header style={{ backgroundColor: `${theme}` }} className={styles.header}>
       <div className={styles.logoContainer}>
         <a href="/" className={styles.logo}>
-          LOGO
+          <img src="/logo.jpeg" alt="Logo" />
         </a>
       </div>
 
-      <div
-        className={styles.profilePicWrapper}
-        onMouseEnter={() => setShow(!show)}
-        onMouseLeave={() => setShow(!show)}
-      >
-        <span className={styles.name}>{name}</span>
-        <img
-          className={styles.profilePic}
-          src="/defaultProfilePic.jpg"
-          alt="profilePic"
-        />
-        {show && (
-          <div className={styles.menu}>
-            <a href={`/profile/${userId}`} className={styles.action}>
-              Account
-            </a>
-            <a href="#" className={styles.action} onClick={handleActions}>
-              Logout
-            </a>
-          </div>
-        )}
-      </div>
-      <div
-        className={styles.notificationContainer}
-        onMouseEnter={() => setShowNotification(true)}
-        onMouseLeave={() => setShowNotification(false)}
-      >
-        <a className={styles.notification}>Notifcation</a>
-        {showNotification && (
-          <div
-            className={`${styles.notificationBox} ${!showNotification ? styles.slideAway : ""}`}
-          >
-            <NotificationBox notifications={notifications} name={name} />
-          </div>
-        )}
-      </div>
+      {/* USer profile pics and account menu */}
+      {isError.length === 0 && (
+        <div
+          className={styles.profilePicWrapper}
+          onMouseEnter={() => setShow(!show)}
+          onMouseLeave={() => setShow(!show)}
+        >
+          <span className={styles.name}>{name}</span>
+          <img
+            className={styles.profilePic}
+            src="/defaultProfilePic.jpg"
+            alt="profilePic"
+          />
+          {show && (
+            <div className={styles.menu}>
+              <a href={`/profile/${userId}`} className={styles.action}>
+                Account
+              </a>
+              <a href="#" className={styles.action} onClick={handleActions}>
+                Logout
+              </a>
+            </div>
+          )}
+        </div>
+      )}
+
+      {isError.length === 0 && (
+        <div
+          className={styles.notificationContainer}
+          onMouseEnter={() => setShowNotification(true)}
+          onMouseLeave={() => setShowNotification(false)}
+        >
+          <a className={styles.notification}>Notifcation</a>
+          {showNotification && (
+            <div
+              className={`${styles.notificationBox} ${!showNotification ? styles.slideAway : ""}`}
+            >
+              <NotificationBox notifications={notifications} name={name} />
+            </div>
+          )}
+        </div>
+      )}
     </header>
   );
 };

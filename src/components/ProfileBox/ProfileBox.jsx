@@ -14,7 +14,7 @@ const ProfileBox = ({ user, params, setIdx, idx,setHide,hide }) => {
   const date = new Date().toLocaleString().split(",")[0];
   const dateArray = date.toLocaleString().split("/");
   // console.log(dateArray);
-  const age = Number(dateArray[2]) - Number(dobArray[0]);
+  const age = (Array.isArray(dobArray) && dobArray?.length !== 0) ? Number(dateArray[2]) - Number(dobArray[0]) : 0;
   const [ingnored, setIngnored] = useState(false);
   const [requested, setRequested] = useState(false);
   // const [display, setDisplay] = useState("flex");
@@ -94,15 +94,15 @@ const ProfileBox = ({ user, params, setIdx, idx,setHide,hide }) => {
             </p>
             <p className={styles.profileInfo}>
               <span className={styles.attr}>Age :</span>
-              <span className={styles.value}>{age}</span>
+              <span className={styles.value}>{age!==0?age:"--"}</span>
             </p>
             <p className={styles.profileInfo}>
               <span className={styles.attr}>City :</span>
-              <span className={styles.value}>{user?.city}</span>
+              <span className={styles.value}>{user?.city || "--"}</span>
             </p>
             <p className={styles.profileInfo}>
               <span className={styles.attr}>Occupation :</span>
-              <span className={styles.value}>{user?.occupation}</span>
+              <span className={styles.value}>{user?.occupation || "--"}</span>
             </p>
           </div>
         </div>
