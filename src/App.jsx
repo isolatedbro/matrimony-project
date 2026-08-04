@@ -242,9 +242,7 @@ function App() {
 
 export default App;
 
-// 77jgvxd9i1dsg7
 
-// WPL_AP1.IybqjjsTJmtdnaG2.+MmOLA==
 
 
 // {user?.gender === "" || user?.dob === "" || user?.occupation === "" ? (
