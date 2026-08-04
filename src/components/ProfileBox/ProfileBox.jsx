@@ -78,7 +78,7 @@ const ProfileBox = ({ user, params, setIdx, idx,setHide,hide }) => {
               className={styles.profilePic}
               src={
                 user?.profilePic?.length > 0
-                  ? `${IMAGE_URL}/uploads/${userId}/profilePic/${user?.profilePic[0]?.filename}`
+                  ? `${IMAGE_URL}${user?.profilePic[0]?.path}`
                   : `/defaultProfilePic.jpg`
               }
               alt="profilePic"
@@ -112,3 +112,4 @@ const ProfileBox = ({ user, params, setIdx, idx,setHide,hide }) => {
 };
 
 export default ProfileBox;
+// uploads/${userId}/profilePic/${user?.profilePic[0]?.filename}
