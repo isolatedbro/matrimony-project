@@ -27,49 +27,58 @@
   width: 100%;
   position: relative;
 }
-.notificationContent{
-    width: 70%;
+.notificationContent {
+  width: 70%;
 }
 .from {
   color: black;
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
+}
+.message {
+  font-size: 12px;
 }
 
-.buttonContainer{
-    display: flex;
-    flex-direction: column;
+.linkedin a {
+  font-size: 12px;
+  text-decoration: none;
+  color: #0273b2;
 }
 
-.button{
-    background-color: white;
-    border: none;
-    cursor: pointer;
-
-    height: 30px;
-    width: 70px;
-
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
 }
 
-.warningPopup{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color:  #f1d0d6;;
-    width: 50%;
-    /* height: 150px; */
-    top: 0;
-    left: 50px;
-    gap: 10px;
-    padding: 10px;
+.button {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+
+  height: 30px;
+  width: 100px;
+  font-size: 12px;
 }
 
-.redText{
-    color: red;
+.warningPopup {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f1d0d6;
+  width: 50%;
+  /* height: 150px; */
+  top: 0;
+  left: 50px;
+  gap: 10px;
+  padding: 10px;
 }
 
-.flex{
-    display: flex;
-    gap: 10px;
+.redText {
+  color: red;
+}
+
+.flex {
+  display: flex;
+  gap: 10px;
 }

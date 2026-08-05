@@ -1,0 +1,106 @@
+.displayFlex{
+    display: flex;
+}
+
+.flexDirectionColumn{
+    flex-direction: column;
+}
+
+.gap5px{
+    gap: 5px;
+}
+.gap10px{
+    gap: 10px;
+}
+
+/*=======WIDHT IN PERCENTAGE=============*/
+.width10pc{
+    width: 20%;
+}
+
+.width100pc{
+    width: 100%;
+}
+/*=======WIDHT IN PERCENTAGE=============*/
+
+.width90px{
+    width: 90px;
+}
+
+
+/*-------------------------------------------*/
+
+/*=======HEIGHT IN Pixels=============*/
+
+.height40px{
+    height: 50px;
+}
+
+/*=======HEIGHT IN Pixels=============*/
+
+.height100pc{
+    height: 100%;
+}
+.maxHeight250px{
+    max-height: 250px;
+}
+.overFlowYAuto{
+    overflow-y: auto;
+}
+
+
+/*=======BORDER PROPERTIES=============*/
+.borderRadius50pc{
+    border-radius: 50%;
+}
+/*=======BORDER PROPERTIES=============*/
+
+
+
+/* ==========FONT SIZE IN PIXELS=========*/
+
+.fontSize12px{
+    font-size: 13px;
+}
+.fontSize11px{
+    font-size: 11px;
+}
+/* ==========FONT SIZE IN PIXELS=========*/
+
+.fontStyleItalic{
+    font-style: oblique;
+}
+
+
+/* ==========FONT COLORS=========*/
+
+.colorBlack{
+    color: black;
+}
+
+.colorGrey{
+    color: grey;
+}
+
+
+
+
+
+
+.boxShadow{
+    box-shadow: 0 12px 30px rgba(165, 80, 100, 0.14);
+}
+
+
+.cursorPointer{
+    cursor: pointer;
+}
+
+
+.objectFitCover{
+    object-fit: cover;
+}
+
+.overFlowHidden{
+    overflow: hidden;
+}

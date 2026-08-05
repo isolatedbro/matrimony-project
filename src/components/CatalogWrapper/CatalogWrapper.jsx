@@ -7,12 +7,13 @@ import RequestBox from "../RequestBox/RequestBox";
 import Loading from "../Loading/Loading";
 import NotificationBox from "../NotificationBox/NotificationBox";
 import UpdateProfile from "../../routes/UpdateProfile/UpdateProfile";
+import AcceptedRequests from "../AcceptedRequest/AcceptedRequests";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 const CatalogWrapper = () => {
   const { secTheme, token, users, userId, isError, user } = useOutletContext();
-  const [requests, setRequests] = useState([]);
+  const [allMatch, setAllMatch] = useState({});
   const [idx, setIdx] = useState([]);
   const [hide, setHide] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -40,7 +41,7 @@ const CatalogWrapper = () => {
     };
 
     const fetchUser = async () => {
-      const res = await fetch(`${API_URL}/users/get-requests`, {
+      const res = await fetch(`${API_URL}/users/get-all-match`, {
         method: "GET",
         headers: {
           authorization: `Bearer ${token}`,
@@ -48,8 +49,7 @@ const CatalogWrapper = () => {
       });
       const data = await res.json();
       setLoading(data ? false : true);
-      // console.log(data);
-      setRequests(data);
+      setAllMatch(data);
     };
 
     if (
@@ -162,7 +162,11 @@ const CatalogWrapper = () => {
             Your Matches
           </button> */}
         </div>
-        {/* <h3 className={styles.heading}>Your Activity</h3> */}
+        <h3 className={styles.heading}>Your Interests</h3>
+        <div className={styles.request}>
+          <AcceptedRequests allMatch={allMatch} />
+        </div>
+
         {/* <div className={styles.request}> */}
         {/* {Array.isArray(requests) && requests?.length !== 0 ? (
             requests?.map((request, index) => (

@@ -11,13 +11,17 @@ import styles from "./ProfilePage.module.css";
 import { useEffect, useState } from "react";
 import MatchList from "../../components/MatchList/MatchList";
 const ProfilePage = () => {
-  const { token, userId, API_URL } = useOutletContext();
+  const { token, userId, API_URL, name } = useOutletContext();
   const [user, setUser] = useState(null);
   const [match, setMatch] = useState([]);
+  const [activity, setActivity] = useState([]);
   const [hide, setHide] = useState(false);
   const [tempProfile, setTempProfile] = useState([]);
   const [message, setMessage] = useState("I just want to say hi");
+  const [requestSentMessage, setRequstSentMessage] = useState(null);
   const params = useParams();
+
+  const isRequestAlreadySent = (Array.isArray(activity) && activity?.find((obj) => obj._id === user?._id)) || requestSentMessage?.message;
 
   const messageArray = [
     "I just want say hi",
@@ -54,7 +58,19 @@ const ProfilePage = () => {
       // console.log(data);
       setMatch(data);
     };
+
+    const getActivity = async () => {
+      const res = await fetch(`${API_URL}/users/get-activity`, {
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await res.json();
+      setActivity(data);
+    };
     getMatch();
+    getActivity();
   }, []);
 
   const handleMessage = (e) => {
@@ -66,19 +82,37 @@ const ProfilePage = () => {
     const reqObj = {
       from: userId,
       to: params?.userId,
-      status: message,
+      senderName: name,
+      recieverName: user?.firstName + " " + user?.lastName,
+      message: message,
+      status: "pending",
       readStatus: "unread",
     };
-    console.log("IBJ", reqObj);
-    const response = await fetch(`${API_URL}/users/send-request`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(reqObj),
-    });
+
+    // const isRequestAlreadySent =
+    //   Array.isArray(activity) && activity?.find((obj) => obj._id === user?._id);
+
+    if (isRequestAlreadySent) {
+      console.log("Request is already sent");
+    } else {
+      //  console.log("IBJ", reqObj);
+       const response = await fetch(`${API_URL}/users/send-request`, {
+         method: "POST",
+         headers: {
+           "Content-Type": "application/json",
+           authorization: `Bearer ${token}`,
+         },
+         body: JSON.stringify(reqObj),
+       });
+
+       const data = await response.json();
+       setRequstSentMessage(data);
+    }
+
+   
   };
+
+  // console.log("Activity", activity);
 
   return (
     <>
@@ -116,6 +150,7 @@ const ProfilePage = () => {
             {user && <ProfileBox user={user} params={params} />}
             {userId !== user?._id && (
               <select
+                name="message"
                 className={styles.actionMenu}
                 value={message}
                 onChange={handleMessage}
@@ -127,11 +162,17 @@ const ProfilePage = () => {
                 ))}
               </select>
             )}
-            {userId !== user?._id && <div className={styles.buttonContainer}>
-              <button className={styles.sendButton} onClick={sendMessage}>
-                Send
-              </button>
-            </div>}
+            {userId !== user?._id && (
+              <div className={styles.buttonContainer}>
+                <button
+                  title={isRequestAlreadySent? `You have already sent request to this user` : ``}
+                  className={`${!isRequestAlreadySent ? styles.sendButton : styles.disableButton}`}
+                  onClick={sendMessage}
+                >
+                  Send
+                </button>
+              </div>
+            )}
           </div>
           <div className={styles.infoCardWrapper}>
             {user && <InformationCard user={user} />}

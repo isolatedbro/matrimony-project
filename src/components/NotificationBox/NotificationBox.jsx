@@ -8,7 +8,7 @@ const NotificationBox = ({ notifications, name }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [action, setAction] = useState(null);
   const [item, setItem] = useState(null);
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
 
   const functionMiddleWare = (action, item) => {
     // console.log("MIDD", action)
@@ -16,6 +16,10 @@ const NotificationBox = ({ notifications, name }) => {
     setItem(item);
     setShowPopup(!showPopup);
   };
+
+  const count = Array.isArray(notifications) ? notifications.filter(
+  item => item.message !== "accepted"
+).length : 0;
 
   const handleAction = async (action, item) => {
     setShowPopup(false);
@@ -45,10 +49,10 @@ const NotificationBox = ({ notifications, name }) => {
       reply = `${name} has not decided about you yet`;
       status = "waiting";
     } else if (action === "Accept") {
-      reply = `${name} seems interested and wants to connect on linkedin`;
+      reply = `${name} seems interested and wants to connect with you on linkedin`;
       status = "accepted";
     }
-    const update = { userId: item?.userId, status: status, reply: reply };
+    const update = { userId: item?.userId, status: status, reply: reply, readStatus: "read"};
 
     console.log("NOTIFICATION", update);
     const updateMessage = await fetch(`${API_URL}/users/update-status`, {
@@ -62,10 +66,10 @@ const NotificationBox = ({ notifications, name }) => {
   };
   return (
     <>
-      <div className={styles.notificationContainer} onMouseLeave={() => {}}>
+      <div className={styles.notificationContainer}>
         {Array.isArray(notifications) && notifications?.map(
           (item, idx) =>
-            item?.message !== "accepted" && ( setCount(count+1),
+            item?.status === "pending" && (
               <div key={idx} className={styles.notification}>
                 <div className={styles.notificationContent}>
                   <p className={styles.from}>{item?.name}</p>
@@ -123,8 +127,7 @@ const NotificationBox = ({ notifications, name }) => {
               </div>
             ),
         )}
-
-        {!count && <h3>Nothing to Show</h3>}
+        {count == 0 && <h3>Nothing to Show</h3>}
       </div>
     </>
   );

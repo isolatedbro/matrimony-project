@@ -1,15 +1,9 @@
 import { useEffect, useState } from "react";
 import styles from "./Header.module.css";
-import {
-  Link,
-  useNavigate,
-  useNavigation,
-  useOutletContext,
-} from "react-router";
+import { useNavigation } from "react-router";
 import NotificationBox from "../NotificationBox/NotificationBox";
 
-
-const Header = ({theme, userId, users, name, notifications, isError }) => {
+const Header = ({ theme, userId, users, name, notifications, isError }) => {
   // const {userId} = useOutletContext();
   // const user = users?.find((i) => i._id === userId);
   const [user, setUser] = useState({});
@@ -48,7 +42,7 @@ const Header = ({theme, userId, users, name, notifications, isError }) => {
     <header style={{ backgroundColor: `${theme}` }} className={styles.header}>
       <div className={styles.logoContainer}>
         <a href="/" className={styles.logo}>
-          <img src="/logo.jpeg" alt="Logo" />
+          <img src="/logo.png" alt="Logo" />
         </a>
       </div>
 

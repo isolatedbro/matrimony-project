@@ -66,6 +66,7 @@
 .request {
   display: flex;
   flex-direction: column;
+  width: 100%;
   color: #72061b;
 }
 

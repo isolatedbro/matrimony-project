@@ -230,6 +230,7 @@ function App() {
             API_URL,
             token,
             user,
+            name,
           }}
         />
       </main>
