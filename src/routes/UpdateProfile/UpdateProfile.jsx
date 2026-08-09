@@ -1085,7 +1085,7 @@ const UpdateProfile = () => {
               <p className={styles.question}>Which college did you go?</p>
               <input
                 type="text"
-                className={styles.select}
+                className={styles.input}
                 value={college}
                 onChange={(e) => setCollege(e.target.value)}
                 name="college"
@@ -1095,7 +1095,7 @@ const UpdateProfile = () => {
               </p>
               <input
                 type="text"
-                className={styles.select}
+                className={styles.input}
                 value={graduationYear}
                 onChange={(e) => setGraduationYear(e.target.value)}
                 name="graduationYear"

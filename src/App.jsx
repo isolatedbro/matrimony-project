@@ -30,6 +30,7 @@ function App() {
   const [name, setName] = useState("");
   const [showNotification, setShowNotification] = useState(true);
   const [notifications, setNotifications] = useState([]);
+  const [allMatch, setAllMatch] = useState([]);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -92,11 +93,29 @@ function App() {
       }
     };
 
+    const getAllMatch = async ()=> {
+      const response = await fetch(`${API_URL}/users/get-all-match`, {
+        method: "GET",
+        headers : {
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+
+      const matchResult = await response.json();
+
+      if(matchResult?.error){
+        console.log(matchResult?.error);
+      }else if (matchResult?.requests){
+        setAllMatch([...matchResult.requests])
+      }
+    }
+
     const init = async () => {
       linkedLogin();
 
       await getUserProfile();
       await getUsers();
+      await getAllMatch();
     };
 
     init();
@@ -201,6 +220,107 @@ function App() {
   //   );
   // };
 
+  const widthInPx  = [];
+  const widthInPc = [];
+  const widthInVw = [];
+  const widthInVmin = [];
+  const widthInVmax = [];
+  const minWidthInPx = [];
+  const maxWidthInPx = [];
+  const minWidthInPc = [];
+  const maxWidthInPc = [];
+  const minWidthInVw = [];
+  const maxWidthInVw = [];
+  const minWidthInVmin = [];
+  const maxWidthInVmin = [];
+  const minWidthInVmax = [];
+  const maxWidthInVmax = [];
+
+  // const heightInPx = [];
+  // const heightInPc = [];
+  // const heightInVh = [];
+  // const heightInVmin = [];
+  // const heightInVmax = [];
+  // const minHeightInPx = [];
+  // const maxHeightInPx = [];
+  // const minHeightInPc = [];
+  // const maxHeightInPc = [];
+  // const minHeightInVh = [];
+  // const maxHeightInVh = [];
+  // const minHeightInVmin = [];
+  // const maxHeightInVmin = [];
+  // const minHeightInVmax = [];
+  // const maxhHeightInVmax = [];
+
+  // const fontSizeInPx = [];
+  // const fontSizeInEm = [];
+  // const fontSizeInRem = [];
+  // const styles = () => {
+  //   for(let i = 0; i<2001; i++){
+  //     widthInPx.push(`.width${i}px{ width : ${i}px}`);
+  //     minWidthInPx.push(`.minWidth${i}px{ min-width : ${i}px}`);
+  //     maxWidthInPx.push(`.maxWidth${i}px{ max-width : ${i}px}`);
+  //   }
+
+  //   for(let i = 0; i<101; i++){
+  //     widthInPc.push(`.width${i}percent{ width : ${i}%`);
+  //   }
+
+  //   for(let i = 0; i<101; i++){
+  //     widthInVw?.push(`.width${i}vw{ width : ${i}vw`);
+  //   }
+  // }
+
+
+  
+  function camelToKebab(str) {
+    return str.replace(/[A-Z]/g, (char) => `-${char.toLowerCase()}`);
+  }
+
+  function parseCSSClass(str) {
+    const separatorIndex = str.indexOf("_");
+
+    
+
+    const property = str.slice(0, separatorIndex);
+    if (separatorIndex === -1) {
+      return {
+        property: camelToKebab(str),
+        value: "",
+      };
+    }
+    const value = str.slice(separatorIndex + 1);
+
+    return {
+      property: camelToKebab(property),
+      value: value,
+    };
+  }
+
+  function generateCSS(str) {
+    const separatorIndex = str.indexOf("_");
+
+    if (separatorIndex === -1) {
+      throw new Error("Invalid format");
+    }
+
+    const propertyCamel = str.slice(0, separatorIndex);
+    const value = str.slice(separatorIndex + 1);
+
+    const property = camelToKebab(propertyCamel);
+
+    // const classValue = value.replace(/(^|-)([a-z])/g, (_, separator, char) =>
+    //   char.toUpperCase(),
+    // );
+
+    // const className = propertyCamel + classValue;
+
+    return `.${str} {\n    ${property}: ${value};\n}`;
+  }
+
+  // console.log(generateCSS("justifyContent_space-between"));
+  // styles();
+
   return (
     <div className={`appContainer`}>
       {
@@ -216,6 +336,10 @@ function App() {
           isError={isError}
         />
       }
+
+      {/* <div> 
+        {arr?.map((obj,idx)=> <p key={idx}>{obj}</p>)}
+      </div> */}
       <main className={`main`}>
         <Outlet
           context={{
@@ -231,6 +355,8 @@ function App() {
             token,
             user,
             name,
+            allMatch,
+            setAllMatch,
           }}
         />
       </main>

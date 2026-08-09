@@ -10,6 +10,8 @@ const NotificationBox = ({ notifications, name }) => {
   const [item, setItem] = useState(null);
   // const [count, setCount] = useState(0);
 
+  // console.log("NOTIFICATIONS",notifications);
+
   const functionMiddleWare = (action, item) => {
     // console.log("MIDD", action)
     setAction(action);
@@ -54,7 +56,7 @@ const NotificationBox = ({ notifications, name }) => {
     }
     const update = { userId: item?.userId, status: status, reply: reply, readStatus: "read"};
 
-    console.log("NOTIFICATION", update);
+    // console.log("NOTIFICATION", update);
     const updateMessage = await fetch(`${API_URL}/users/update-status`, {
       method: "POST",
       headers: {
@@ -72,7 +74,7 @@ const NotificationBox = ({ notifications, name }) => {
             item?.status === "pending" && (
               <div key={idx} className={styles.notification}>
                 <div className={styles.notificationContent}>
-                  <p className={styles.from}>{item?.name}</p>
+                  <p className={styles.from} onClick={()=> window.location.href=`/profile/${item?.userId}`}>{item?.name}</p>
                   <p className={styles.message}>{item?.message}</p>
                   <p
                     className={styles.linkedin}

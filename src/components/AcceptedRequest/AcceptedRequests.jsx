@@ -2,8 +2,8 @@ import styles from "./AcceptedRequests.module.css";
 
 const AcceptedRequests = ({allMatch}) => {
 
-  console.log("ALL MATCH", allMatch)
-  const arr = Array.isArray(allMatch?.requests) ? allMatch?.requests?.filter((obj,idx) => obj?.role === 'reciever' && obj?.status === 'accepted') : [];
+  // console.log("ALL MATCH", allMatch)
+  const arr = Array.isArray(allMatch) ? allMatch?.filter((obj) => obj?.role === 'reciever' && obj?.status === 'accepted') : [];
   return (
     <>
       <div

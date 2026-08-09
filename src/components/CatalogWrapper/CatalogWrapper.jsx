@@ -8,12 +8,13 @@ import Loading from "../Loading/Loading";
 import NotificationBox from "../NotificationBox/NotificationBox";
 import UpdateProfile from "../../routes/UpdateProfile/UpdateProfile";
 import AcceptedRequests from "../AcceptedRequest/AcceptedRequests";
+import SentRequest from "../SentRequest/SentRequest";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 const CatalogWrapper = () => {
-  const { secTheme, token, users, userId, isError, user } = useOutletContext();
-  const [allMatch, setAllMatch] = useState({});
+  const { secTheme, token, users, userId, isError, user, allMatch, setAllMatch } = useOutletContext();
+  // const [allMatch, setAllMatch] = useState({});
   const [idx, setIdx] = useState([]);
   const [hide, setHide] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -32,7 +33,7 @@ const CatalogWrapper = () => {
   //   transform: "translateX(-100px)"
   // };
 
-  console.log("USERID ====", userId);
+  // console.log("USERID ====", userId);
   useEffect(() => {
     const needUpdate = () => {
       window.location.href = `/update-profile/${userId}`;
@@ -40,17 +41,17 @@ const CatalogWrapper = () => {
       // window.location.href = `/update-profile/${user?._id}`;
     };
 
-    const fetchUser = async () => {
-      const res = await fetch(`${API_URL}/users/get-all-match`, {
-        method: "GET",
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
-      const data = await res.json();
-      setLoading(data ? false : true);
-      setAllMatch(data);
-    };
+    // const fetchUser = async () => {
+    //   const res = await fetch(`${API_URL}/users/get-all-match`, {
+    //     method: "GET",
+    //     headers: {
+    //       authorization: `Bearer ${token}`,
+    //     },
+    //   });
+    //   const data = await res.json();
+    //   setLoading(data ? false : true);
+    //   setAllMatch(data);
+    // };
 
     if (
       user?.gender === "" ||
@@ -60,8 +61,6 @@ const CatalogWrapper = () => {
       user?.occupation === ""
     ) {
       if (userId && userId.length > 0) needUpdate();
-    } else {
-      fetchUser();
     }
   }, [userId]);
 
@@ -76,6 +75,7 @@ const CatalogWrapper = () => {
   // console.log("Hello")
 
   // console.log("USER ", user?.dateOfBirth);
+  // console.log("ALL MACTH", allMatch);
 
   return (
     <div className={styles.catalogWrapper}>
@@ -162,7 +162,14 @@ const CatalogWrapper = () => {
             Your Matches
           </button> */}
         </div>
-        <h3 className={styles.heading}>Your Interests</h3>
+
+        <h4 className={styles.heading}>People you are interested in:</h4>
+        <div className={styles.request}> 
+          <SentRequest allMatch={allMatch}/>
+        </div>
+        <h4 className={styles.heading}>
+          People you have accepted requested of
+        </h4>
         <div className={styles.request}>
           <AcceptedRequests allMatch={allMatch} />
         </div>

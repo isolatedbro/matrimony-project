@@ -3,7 +3,7 @@ import styles from "./InformationCard.module.css";
 
 const InformationCard = ({ user }) => {
   const { userId } = useOutletContext();
-  console.log(user?.gallery);
+  // console.log(user?.gallery);
   return (
     <>
       <div className={styles.container}>
